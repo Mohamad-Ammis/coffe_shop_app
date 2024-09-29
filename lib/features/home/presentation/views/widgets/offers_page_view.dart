@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class OffersPageView extends StatelessWidget {
   const OffersPageView({super.key, required this.indicatoController});
@@ -8,6 +7,8 @@ class OffersPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.sizeOf(context).height / 6,
+      width: MediaQuery.sizeOf(context).width,
       margin: const EdgeInsets.all(0),
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(

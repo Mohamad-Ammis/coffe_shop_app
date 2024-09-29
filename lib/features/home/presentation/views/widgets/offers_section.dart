@@ -13,21 +13,22 @@ class _OffersSectionState extends State<OffersSection> {
   final PageController indicatoController = PageController();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      width: 350,
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).height / 6,
+      width: MediaQuery.sizeOf(context).width,
       child: Stack(
+        alignment: Alignment.center,
         children: [
           OffersPageView(
             indicatoController: indicatoController,
           ),
           Positioned.fill(
+              top: -120,
               child: Align(
-            alignment: Alignment.topCenter,
-            child: OffersCardIndicator(
-              indicatorController: indicatoController,
-            ),
-          ))
+                child: OffersCardIndicator(
+                  indicatorController: indicatoController,
+                ),
+              ))
         ],
       ),
     );

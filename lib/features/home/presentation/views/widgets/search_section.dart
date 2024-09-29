@@ -1,4 +1,3 @@
-
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/app_style.dart';
 import 'package:coffe_shop/features/home/presentation/views/widgets/custom_search_textfield.dart';
@@ -12,16 +11,17 @@ class SearchSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.sizeOf(context).height / 6 * 2,
       padding: const EdgeInsets.all(kMainPagePadding),
       width: double.infinity,
       decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Color(0xff313131), Color(0xff111111)])),
+          gradient:
+              LinearGradient(colors: [Color(0xff313131), Color(0xff111111)])),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
-            height: 30,
+            height: 20,
           ),
           Text(
             'Welcome Back !',
