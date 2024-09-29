@@ -1,4 +1,5 @@
 import 'package:coffe_shop/core/utils/api_keys.dart';
+import 'package:coffe_shop/core/utils/app_routes.dart';
 import 'package:coffe_shop/features/home/presentation/views/home_view.dart';
 import 'package:coffe_shop/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,8 +24,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomeView(),
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
     );
   }
 }

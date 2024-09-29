@@ -1,3 +1,4 @@
+import 'package:coffe_shop/core/utils/app_style.dart';
 import 'package:flutter/material.dart';
 
 class SlidingText extends StatelessWidget {
@@ -16,7 +17,8 @@ class SlidingText extends StatelessWidget {
           return SlideTransition(
             position: slidingAnimation,
             child: const Text(
-              'Read Free Books',
+              'Welcome in coffee world',
+              style: Styles.style18SemiBold,
               textAlign: TextAlign.center,
             ),
           );

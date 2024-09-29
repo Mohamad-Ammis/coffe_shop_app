@@ -37,5 +37,9 @@ class Assets {
   /// Assets for assetsImagesTestProduct
   /// assets/images/test_product.png
   static const String assetsImagesTestProduct = "assets/images/test_product.png";
+
+  /// Assets for assetsLottieSplashAnimation
+  /// assets/lottie/splash_animation.json
+  static const String assetsLottieSplashAnimation = "assets/lottie/splash_animation.json";
 }
 
