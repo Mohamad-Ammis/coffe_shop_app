@@ -7,3 +7,4 @@ const Color kPrimaryLightColor = Color(0xffF9F2ED);
 const Color kLightSubTitleColor = Color(0xffA2A2A2);
 Color kLightGreyColor = const Color(0xffEDEDED).withOpacity(.35);
 const double kMainPagePadding = 24;
+const kProductsCollection = 'products';
