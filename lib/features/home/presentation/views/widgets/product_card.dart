@@ -1,14 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/app_style.dart';
 import 'package:coffe_shop/core/utils/assets.dart';
 import 'package:coffe_shop/core/widgets/custom_icon_button.dart';
+import 'package:coffe_shop/features/home/data/models/product_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
     super.key,
+    required this.model,
   });
-
+  final ProductModel model;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,10 +21,21 @@ class ProductCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            child: Image.asset(
-              Assets.assetsImagesTestProduct,
-              fit: BoxFit.cover,
+          Expanded(
+            child: CachedNetworkImage(
+              imageUrl: model.image,
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              placeholder: (context, url) =>
+                  Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
           ),
           Expanded(
@@ -31,8 +45,8 @@ class ProductCard extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                const Text(
-                  'Caffe Mocha',
+                Text(
+                  model.name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Styles.style16SemiBold,
@@ -41,7 +55,7 @@ class ProductCard extends StatelessWidget {
                   height: 4,
                 ),
                 Text(
-                  'Deep Foam',
+                  model.category,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Styles.style12Regular
@@ -52,18 +66,18 @@ class ProductCard extends StatelessWidget {
                     height: 10,
                   ),
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                       child: Text(
-                        r'$50.12',
+                        r'$' '${model.price}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Styles.style18SemiBold,
                       ),
                     ),
-                    CustomIconButton()
+                    const CustomIconButton()
                   ],
                 ),
               ],
