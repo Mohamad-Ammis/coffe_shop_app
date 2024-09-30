@@ -1,4 +1,6 @@
-import 'package:coffe_shop/features/home/presentation/cubits/cubit/product_cubit.dart';
+import 'package:coffe_shop/core/widgets/custom_error_widget.dart';
+import 'package:coffe_shop/core/widgets/custom_loading_widget.dart';
+import 'package:coffe_shop/features/home/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/views/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +16,7 @@ class ProductsGridView extends StatelessWidget {
       builder: (context, state) {
         if (state is ProductSuccess) {
           return GridView.builder(
+              cacheExtent: 10,
               itemCount: state.products.length,
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -29,11 +32,9 @@ class ProductsGridView extends StatelessWidget {
                 );
               });
         } else if (state is ProductFailure) {
-          return Center(
-            child: Text(state.errMessage),
-          );
+          return CustomErrorWidget(errMessage: state.errMessage);
         } else {
-          return Center(child: CircularProgressIndicator());
+          return CustomLoadingWidget();
         }
       },
     );

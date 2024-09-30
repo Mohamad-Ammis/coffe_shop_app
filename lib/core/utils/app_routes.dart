@@ -1,5 +1,5 @@
 import 'package:coffe_shop/constans.dart';
-import 'package:coffe_shop/features/home/presentation/cubits/cubit/product_cubit.dart';
+import 'package:coffe_shop/features/home/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/views/home_view.dart';
 import 'package:coffe_shop/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
