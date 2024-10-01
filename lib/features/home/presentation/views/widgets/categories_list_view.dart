@@ -33,15 +33,14 @@ class _CategoriesListViewState extends State<CategoriesListView> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
+                        var cubit = BlocProvider.of<ProductCubit>(context);
                         currentIndex = index;
                         setState(() {});
-                        BlocProvider.of<ProductCubit>(context)
-                            .getProductsByCategory(
+                        cubit.getProductsByCategory(
                           collectionName: kProductsCollection,
                           category: state.categories[index].name,
                         );
-                        BlocProvider.of<ProductCubit>(context)
-                            .selectedCategory = state.categories[index].name;
+                        cubit.selectedCategory = state.categories[index].name;
                       },
                       child: CategoryItem(
                         title: state.categories[index].name,

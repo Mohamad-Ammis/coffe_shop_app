@@ -20,7 +20,7 @@ class ProductsSection extends StatelessWidget {
             SizedBox(
               height: MediaQuery.sizeOf(context).height / 6 / 2,
             ),
-            CategoriesListView(),
+            const CategoriesListView(),
               
           const ProductsGridView()
         ],

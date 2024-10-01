@@ -42,6 +42,10 @@ class Assets {
   /// assets/images/test_product.png
   static const String assetsImagesTestProduct = "assets/images/test_product.png";
 
+  /// Assets for assetsLottieEmptyList
+  /// assets/lottie/empty_list.json
+  static const String assetsLottieEmptyList = "assets/lottie/empty_list.json";
+
   /// Assets for assetsLottieSplashAnimation
   /// assets/lottie/splash_animation.json
   static const String assetsLottieSplashAnimation = "assets/lottie/splash_animation.json";
