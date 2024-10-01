@@ -12,6 +12,7 @@ part 'product_state.dart';
 class ProductCubit extends Cubit<ProductState> {
   ProductCubit() : super(ProductInitial());
   Timer? _debounce;
+  String selectedCategory = 'All Coffee';
   final HomeRepo homeRepo = HomeRepoImplementation();
   Future getAllProducts({required String collectionName}) async {
     try {
@@ -60,29 +61,30 @@ class ProductCubit extends Cubit<ProductState> {
     emit(ProductLoading());
     if (_debounce?.isActive ?? false) {
       _debounce!.cancel();
-    } else {
-      _debounce = Timer(const Duration(milliseconds: 500), () async {
-        try {
-          var data;
-          if (searchText == '') {
-            data =
-                await homeRepo.getAllProducts(collectionName: collectionName);
-          } else {
-            data = await homeRepo.searchProducts(
-                collectionName: collectionName, searchText: searchText);
-          }
-          data.fold(
-            (l) {
-              emit(ProductFailure(errMessage: l.errorMessage));
-            },
-            (r) {
-              emit(ProductSuccess(products: r));
-            },
-          );
-        } catch (e) {
-          log('e: $e');
-        }
-      });
     }
+    _debounce = Timer(const Duration(milliseconds: 500), () async {
+      try {
+        var data;
+        
+          log('category $selectedCategory');
+          log('searchText $searchText');
+          data = await homeRepo.searchProducts(
+            collectionName: collectionName,
+            searchText: searchText,
+            selectedCategory: selectedCategory,
+          );
+        data.fold(
+          (l) {
+            emit(ProductFailure(errMessage: l.errorMessage));
+          },
+          (r) {
+            emit(ProductSuccess(products: r));
+          },
+        );
+      } catch (e) {
+        log('e: $e');
+        emit(ProductFailure(errMessage: e.toString()));
+      }
+    });
   }
 }

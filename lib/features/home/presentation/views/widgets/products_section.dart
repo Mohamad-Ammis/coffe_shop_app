@@ -1,7 +1,9 @@
 import 'package:coffe_shop/constans.dart';
+import 'package:coffe_shop/features/home/presentation/cubits/category_cubit/category_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/views/widgets/categories_list_view.dart';
 import 'package:coffe_shop/features/home/presentation/views/widgets/products_gridview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsSection extends StatelessWidget {
   const ProductsSection({
@@ -18,7 +20,8 @@ class ProductsSection extends StatelessWidget {
             SizedBox(
               height: MediaQuery.sizeOf(context).height / 6 / 2,
             ),
-          const CategoriesListView(),
+            CategoriesListView(),
+              
           const ProductsGridView()
         ],
       ),

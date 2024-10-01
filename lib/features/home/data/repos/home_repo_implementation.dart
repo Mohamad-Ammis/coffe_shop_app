@@ -76,10 +76,15 @@ class HomeRepoImplementation implements HomeRepo {
 
   @override
   Future<Either<Faliure, List<ProductModel>>> searchProducts(
-      {required String collectionName, required String searchText}) async {
+      {required String collectionName,
+      required String selectedCategory,
+      required String searchText}) async {
     try {
       var data = await firebaseService.searchProducts(
-          collectionName: collectionName, searchText: searchText);
+        selectedCategory: selectedCategory,
+          collectionName: collectionName,
+          searchText: searchText,
+          );
       List<ProductModel> produtcs = [];
       for (var element in data) {
         produtcs.add(ProductModel.fromjson(element));

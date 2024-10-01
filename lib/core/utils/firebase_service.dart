@@ -1,8 +1,6 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:coffe_shop/features/home/data/models/product_model.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class FirebaseService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -30,7 +28,6 @@ class FirebaseService {
   Future<List<Map<String, dynamic>>> getProductsByCategory(
       {required String collcetionName, required String category}) async {
     List<Map<String, dynamic>> products = [];
-
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
           .collection(collcetionName)
@@ -46,13 +43,28 @@ class FirebaseService {
     }
     return products;
   }
+
   //firebase dont allow use search with substring so i get all data and search in it
-  Future<List<Map<String, dynamic>>> searchProducts({
-    required String collectionName,
-    required String searchText,
-  }) async {
-    QuerySnapshot querySnapshot =
-        await _firestore.collection(collectionName).get();
+
+  //SO FIRST WE WILL CHECK ON CATEGORY AND GET PRODUCTS DEPENDENT ON CATEGORY
+  //THEN WE WILL FILTER IT , THATS IS DONT THE BEST CASE FOR COMPLEXITY BUT
+  //WE CAN'T SEARCH IN STRING USING WHERE SO IF WE USE IT WE ONLY GET
+  //THE PRODUCTS WHICH START WITH THE SEARCH TEXT AND THE UX SAY GET PRODUCT
+  //WHICH CONTAIN THIS TEXT NOT ONLY START WITH
+  Future<List<Map<String, dynamic>>> searchProducts(
+      {required String collectionName,
+      required String searchText,
+      required String selectedCategory}) async {
+    QuerySnapshot querySnapshot;
+    if (selectedCategory == 'All Coffee') {
+      querySnapshot = await _firestore.collection(collectionName).get();
+    } else {
+      querySnapshot = await _firestore
+          .collection(collectionName)
+          .where('category', isEqualTo: selectedCategory)
+          .get();
+    }
+    
     List<Map<String, dynamic>> products = [];
     for (var doc in querySnapshot.docs) {
       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;

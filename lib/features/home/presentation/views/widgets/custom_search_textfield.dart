@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/app_style.dart';
 import 'package:coffe_shop/core/utils/assets.dart';
+import 'package:coffe_shop/features/home/presentation/cubits/category_cubit/category_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +28,9 @@ class CustomSearchTextFiled extends StatelessWidget {
           child: TextField(
             onChanged: (value) {
               BlocProvider.of<ProductCubit>(context).searchProduct(
-                  collectionName: kProductsCollection, searchText: value);
+                collectionName: kProductsCollection,
+                searchText: value,
+              );
             },
             textAlignVertical: TextAlignVertical.center,
             cursorColor: Colors.white,
@@ -56,15 +61,21 @@ class CustomSearchTextFiled extends StatelessWidget {
         const SizedBox(
           width: 16,
         ),
-        Container(
-            decoration: BoxDecoration(
-                color: kPrimaryColor, borderRadius: BorderRadius.circular(10)),
-            padding: const EdgeInsets.all(18),
-            child: SvgPicture.asset(
-              Assets.assetsImagesFilter,
-              // ignore: deprecated_member_use
-              color: Colors.white,
-            ))
+        GestureDetector(
+          onTap: () {
+            BlocProvider.of<CategoryCubit>(context).toggleCategoryVisibility();
+          },
+          child: Container(
+              decoration: BoxDecoration(
+                  color: kPrimaryColor,
+                  borderRadius: BorderRadius.circular(10)),
+              padding: const EdgeInsets.all(18),
+              child: SvgPicture.asset(
+                Assets.assetsImagesFilter,
+                // ignore: deprecated_member_use
+                color: Colors.white,
+              )),
+        )
       ],
     );
   }

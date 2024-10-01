@@ -9,5 +9,5 @@ abstract class HomeRepo {
   Future<Either<Faliure, List<OfferProductModel>>> getAllOffers({required String collectionName});
   Future<Either<Faliure, List<ProductModel>>> getAllProducts({required String collectionName});
   Future<Either<Faliure, List<ProductModel>>> getProductsByCategory({required String collectionName,required String category});
-  Future<Either<Faliure, List<ProductModel>>> searchProducts({required String collectionName,required String searchText});
+  Future<Either<Faliure, List<ProductModel>>> searchProducts({required String collectionName,required String selectedCategory, required String searchText});
 }

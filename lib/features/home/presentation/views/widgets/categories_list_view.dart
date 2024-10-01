@@ -16,30 +16,42 @@ class CategoriesListView extends StatefulWidget {
 
 class _CategoriesListViewState extends State<CategoriesListView> {
   int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CategoryCubit, CategoryState>(
       builder: (context, state) {
         if (state is CategorySuccess) {
-          return SizedBox(
-            height: 35,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: state.categories.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
+          return Column(
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 500),
+                height: state.showCategory ? 35 : 0,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: state.categories.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
                       onTap: () {
                         currentIndex = index;
                         setState(() {});
                         BlocProvider.of<ProductCubit>(context)
                             .getProductsByCategory(
-                                collectionName: kProductsCollection,
-                                category: state.categories[index].name);
+                          collectionName: kProductsCollection,
+                          category: state.categories[index].name,
+                        );
+                        BlocProvider.of<ProductCubit>(context)
+                            .selectedCategory = state.categories[index].name;
                       },
                       child: CategoryItem(
-                          title: state.categories[index].name,
-                          isActive: currentIndex == index ? true : false));
-                }),
+                        title: state.categories[index].name,
+                        isActive: currentIndex == index,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           );
         } else if (state is CategoryFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);

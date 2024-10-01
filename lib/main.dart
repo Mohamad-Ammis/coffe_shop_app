@@ -1,4 +1,7 @@
+import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/api_keys.dart';
 import 'package:coffe_shop/core/utils/app_routes.dart';
 import 'package:coffe_shop/firebase_options.dart';
@@ -15,6 +18,15 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+  //     .collection(kProductsCollection)
+  //     .where('category', isEqualTo: 'Espresso')
+  //     .get();
+  // for (var doc in querySnapshot.docs) {
+  //   log('--------------------------------------------------------------------');
+  //   log(doc.data().toString());
+  //   log('--------------------------------------------------------------------');
+  // }
   runApp(const MyApp());
 }
 

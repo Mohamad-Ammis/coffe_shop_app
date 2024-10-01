@@ -5,15 +5,15 @@ import 'package:coffe_shop/features/home/data/repos/home_repo_implementation.dar
 import 'package:meta/meta.dart';
 
 part 'category_state.dart';
-
 class CategoryCubit extends Cubit<CategoryState> {
-  CategoryCubit() : super(CategoryInitial());
   final HomeRepo homeRepo = HomeRepoImplementation();
+
+  CategoryCubit() : super(CategoryInitial());
+
   Future getAllCategories({required String collectionName}) async {
     try {
       emit(CategoryLoading());
-      var data =
-          await homeRepo.getAllCategories(collectionName: collectionName);
+      var data = await homeRepo.getAllCategories(collectionName: collectionName);
       data.fold((l) {
         emit(CategoryFailure(errMessage: l.errorMessage));
       }, (r) {
@@ -21,6 +21,14 @@ class CategoryCubit extends Cubit<CategoryState> {
       });
     } catch (e) {
       emit(CategoryFailure(errMessage: e.toString()));
+    }
+  }
+
+  // دالة لتبديل إظهار أو إخفاء قائمة التصنيفات
+  void toggleCategoryVisibility() {
+    if (state is CategorySuccess) {
+      final currentState = state as CategorySuccess;
+      emit(currentState.copyWith(showCategory: !currentState.showCategory));
     }
   }
 }

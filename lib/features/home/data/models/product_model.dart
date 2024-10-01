@@ -19,7 +19,6 @@ class ProductModel {
     required this.category,
   });
 
-  // تحويل من Map إلى Product
   factory ProductModel.fromjson(Map<String, dynamic> data) {
     return ProductModel(
       image: data['image'] ?? '',
@@ -27,7 +26,7 @@ class ProductModel {
       sizes: List<String>.from(data['sizes'] ?? []),
       price: data['price'] ?? 0.0,
       name: data['name'] ?? '',
-      averageRate: data['average_rate'] ?? 0.0,
+      averageRate: data['average_rate'] as num? ?? 0.0,
       description: data['description'] ?? '',
       category: data['category'] ?? '',
     );
