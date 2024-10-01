@@ -1,9 +1,10 @@
+import 'package:coffe_shop/features/home/data/models/offer_product_model.dart';
 import 'package:flutter/material.dart';
 
 class OffersPageView extends StatelessWidget {
-  const OffersPageView({super.key, required this.indicatoController});
+  const OffersPageView({super.key, required this.indicatoController, required this.offers});
   final PageController indicatoController;
-
+  final List<OfferProductModel> offers;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +16,7 @@ class OffersPageView extends StatelessWidget {
           color: Colors.transparent, borderRadius: BorderRadius.circular(0)),
       child: PageView.builder(
           controller: indicatoController,
-          itemCount: 4,
+          itemCount: offers.length,
           itemBuilder: (context, index) {
             return Stack(
               children: [

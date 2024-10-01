@@ -14,6 +14,7 @@ class NavBarItem extends StatefulWidget {
   final bool isActive;
 
   @override
+  // ignore: library_private_types_in_public_api
   _NavBarItemState createState() => _NavBarItemState();
 }
 

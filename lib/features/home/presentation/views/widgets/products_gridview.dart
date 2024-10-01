@@ -1,7 +1,9 @@
 import 'package:coffe_shop/core/widgets/custom_error_widget.dart';
-import 'package:coffe_shop/core/widgets/custom_loading_widget.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/views/widgets/product_card.dart';
+// ignore: unused_import
+import 'package:coffe_shop/features/home/presentation/views/widgets/product_loading_shimmer_card.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/product_loading_shimmer_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,7 +36,7 @@ class ProductsGridView extends StatelessWidget {
         } else if (state is ProductFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
         } else {
-          return CustomLoadingWidget();
+          return const ProductLoadingShimmerGridView();
         }
       },
     );

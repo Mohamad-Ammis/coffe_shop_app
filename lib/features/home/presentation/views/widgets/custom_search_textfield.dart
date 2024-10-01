@@ -1,7 +1,9 @@
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/app_style.dart';
 import 'package:coffe_shop/core/utils/assets.dart';
+import 'package:coffe_shop/features/home/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomSearchTextFiled extends StatelessWidget {
@@ -21,6 +23,10 @@ class CustomSearchTextFiled extends StatelessWidget {
           clipBehavior: Clip.hardEdge,
           width: MediaQuery.sizeOf(context).width / 1.5,
           child: TextField(
+            onChanged: (value) {
+              BlocProvider.of<ProductCubit>(context).searchProduct(
+                  collectionName: kProductsCollection, searchText: value);
+            },
             textAlignVertical: TextAlignVertical.center,
             cursorColor: Colors.white,
             style: Styles.style14Regular.copyWith(color: Colors.white),

@@ -2,9 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/app_style.dart';
 import 'package:coffe_shop/core/utils/assets.dart';
+import 'package:coffe_shop/core/utils/extensions.dart';
 import 'package:coffe_shop/core/widgets/custom_icon_button.dart';
 import 'package:coffe_shop/features/home/data/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -15,6 +17,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      clipBehavior: Clip.hardEdge,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(16)),
@@ -22,20 +25,56 @@ class ProductCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: CachedNetworkImage(
-              imageUrl: model.image,
-              imageBuilder: (context, imageProvider) => Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: imageProvider,
-                    fit: BoxFit.cover,
+            child: Stack(
+              clipBehavior: Clip.hardEdge,
+              children: [
+                CachedNetworkImage(
+                  imageUrl: model.image,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
+                  placeholder: (context, url) =>
+                      const Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-              ),
-              placeholder: (context, url) =>
-                  Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+                Positioned.fill(
+                    child: Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                    decoration: BoxDecoration(
+                        color: const Color(0xff313131).withOpacity(.3),
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(16),
+                          topRight: Radius.circular(10),
+                        )),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          Assets.assetsImagesStar,
+                          width: 15,
+                          height: 15,
+                        ),
+                        4.horizontalSizedBox,
+                        Text(
+                          model.averageRate.toString(),
+                          style: Styles.style12Regular.copyWith(
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ))
+              ],
             ),
           ),
           Expanded(
