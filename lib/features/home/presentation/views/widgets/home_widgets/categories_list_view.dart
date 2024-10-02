@@ -2,8 +2,8 @@ import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/widgets/custom_error_widget.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/category_cubit/category_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/product_cubit/product_cubit.dart';
-import 'package:coffe_shop/features/home/presentation/views/widgets/category_item.dart';
-import 'package:coffe_shop/features/home/presentation/views/widgets/category_loading_shimmer_list_view.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/category_item.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/category_loading_shimmer_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,14 +1,15 @@
+import 'package:coffe_shop/core/utils/app_routes.dart';
 import 'package:coffe_shop/core/utils/app_style.dart';
 import 'package:coffe_shop/core/utils/assets.dart';
 import 'package:coffe_shop/core/widgets/custom_error_widget.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/product_cubit/product_cubit.dart';
-import 'package:coffe_shop/features/home/presentation/views/widgets/empty_product_list.dart';
-import 'package:coffe_shop/features/home/presentation/views/widgets/product_card.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/product_card.dart';
 // ignore: unused_import
-import 'package:coffe_shop/features/home/presentation/views/widgets/product_loading_shimmer_card.dart';
-import 'package:coffe_shop/features/home/presentation/views/widgets/product_loading_shimmer_grid_view.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/product_loading_shimmer_card.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/product_loading_shimmer_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 class ProductsGridView extends StatelessWidget {
@@ -34,8 +35,14 @@ class ProductsGridView extends StatelessWidget {
                       mainAxisSpacing: 8,
                       crossAxisSpacing: 16),
                   itemBuilder: (context, index) {
-                    return ProductCard(
-                      model: state.products[index],
+                    return GestureDetector(
+                      onTap: () {
+                        context.push(AppRouter.kProductDetialsViewPath,
+                            extra: state.products[index]);
+                      },
+                      child: ProductCard(
+                        model: state.products[index],
+                      ),
                     );
                   });
         } else if (state is ProductFailure) {
@@ -44,6 +51,28 @@ class ProductsGridView extends StatelessWidget {
           return const ProductLoadingShimmerGridView();
         }
       },
+    );
+  }
+}
+
+class EmptyProductsList extends StatelessWidget {
+  const EmptyProductsList({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Lottie.asset(Assets.assetsLottieEmptyList, fit: BoxFit.contain),
+        const Text(
+          "Sorry There is No Products here",
+          style: Styles.style14Regular,
+        )
+      ],
     );
   }
 }

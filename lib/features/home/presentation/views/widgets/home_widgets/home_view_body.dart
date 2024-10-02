@@ -1,6 +1,6 @@
-import 'package:coffe_shop/features/home/presentation/views/widgets/offers_section.dart';
-import 'package:coffe_shop/features/home/presentation/views/widgets/products_section.dart';
-import 'package:coffe_shop/features/home/presentation/views/widgets/search_section.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/offers_section.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/products_section.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/search_section.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {

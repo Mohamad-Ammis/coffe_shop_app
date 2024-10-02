@@ -13,6 +13,7 @@ class ProductCubit extends Cubit<ProductState> {
   ProductCubit() : super(ProductInitial());
   Timer? _debounce;
   String selectedCategory = 'All Coffee';
+
   final HomeRepo homeRepo = HomeRepoImplementation();
   Future getAllProducts({required String collectionName}) async {
     try {
@@ -65,14 +66,13 @@ class ProductCubit extends Cubit<ProductState> {
     _debounce = Timer(const Duration(milliseconds: 500), () async {
       try {
         var data;
-        
-          log('category $selectedCategory');
-          log('searchText $searchText');
-          data = await homeRepo.searchProducts(
-            collectionName: collectionName,
-            searchText: searchText,
-            selectedCategory: selectedCategory,
-          );
+        log('category $selectedCategory');
+        log('searchText $searchText');
+        data = await homeRepo.searchProducts(
+          collectionName: collectionName,
+          searchText: searchText,
+          selectedCategory: selectedCategory,
+        );
         data.fold(
           (l) {
             emit(ProductFailure(errMessage: l.errorMessage));
@@ -88,3 +88,46 @@ class ProductCubit extends Cubit<ProductState> {
     });
   }
 }
+/////// PAGINATION CODE 
+/*
+ List<ProductModel> items = [];
+
+  DocumentSnapshot? lastDocument; 
+  bool isLoading = false; 
+  bool hasMoreData = true; 
+
+  Future<void> fetch() async {
+    if (isLoading || !hasMoreData) return;
+
+    isLoading = true; 
+
+    try {
+      Query query = FirebaseFirestore.instance.collection('products').limit(1);
+      if (lastDocument != null) {
+        query = query.startAfterDocument(lastDocument!);
+      }
+
+      QuerySnapshot querySnapshot = await query.get();
+      List<Map<String, dynamic>> newItems = querySnapshot.docs
+          .map((doc) => doc.data() as Map<String, dynamic>)
+          .toList();
+
+      if (newItems.isNotEmpty) {
+        lastDocument = querySnapshot.docs.last; 
+      } else {
+        hasMoreData = false; 
+      }
+      List<ProductModel> temp = [];
+      for (var element in newItems) {
+        items.add(ProductModel.fromjson(element));
+      }
+      items.addAll(temp); 
+      log('query: ${items.length.toString()}'); 
+    } catch (e) {
+      log('Error fetching data: $e');
+    } finally {
+      isLoading = false; 
+    }
+  }
+
+*/ 

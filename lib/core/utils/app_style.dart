@@ -14,6 +14,8 @@ class Styles {
       fontFamily: kFontFamily, fontSize: 16, fontWeight: FontWeight.w600);
   static const TextStyle style18SemiBold =  TextStyle(
       fontFamily: kFontFamily, fontSize: 18, fontWeight: FontWeight.w600);
+  static const TextStyle style20SemiBold =  TextStyle(
+      fontFamily: kFontFamily, fontSize: 20, fontWeight: FontWeight.w600);
         static const TextStyle style24Bold = TextStyle(
       fontFamily: kFontFamily, fontSize: 24, fontWeight: FontWeight.w700);
 }

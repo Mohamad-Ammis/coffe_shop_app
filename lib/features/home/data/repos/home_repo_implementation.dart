@@ -89,7 +89,7 @@ class HomeRepoImplementation implements HomeRepo {
       for (var element in data) {
         produtcs.add(ProductModel.fromjson(element));
       }
-      log('produtcs: ${produtcs}');
+      log('produtcs: $produtcs');
       return Right(produtcs);
     } catch (e) {
       return Left(ServerFaliure(errorMessage: e.toString()));

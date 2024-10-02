@@ -18,7 +18,7 @@ class EmptyProductsList extends StatelessWidget {
         children: [
           Lottie.asset(Assets.assetsLottieEmptyList,
               fit: BoxFit.contain),
-          Text(
+          const Text(
             "Sorry There is No Products here",
             style: Styles.style14Regular,
           )

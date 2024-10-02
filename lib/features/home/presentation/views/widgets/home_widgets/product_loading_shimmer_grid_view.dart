@@ -1,5 +1,5 @@
 
-import 'package:coffe_shop/features/home/presentation/views/widgets/product_loading_shimmer_card.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/product_loading_shimmer_card.dart';
 import 'package:flutter/material.dart';
 
 class ProductLoadingShimmerGridView extends StatelessWidget {

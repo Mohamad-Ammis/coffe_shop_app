@@ -1,8 +1,8 @@
 import 'package:coffe_shop/core/widgets/custom_error_widget.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/cubit/offers_cubit.dart';
-import 'package:coffe_shop/features/home/presentation/views/widgets/offers_card_indicator.dart';
-import 'package:coffe_shop/features/home/presentation/views/widgets/offers_loading_widget.dart';
-import 'package:coffe_shop/features/home/presentation/views/widgets/offers_page_view.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/offers_card_indicator.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/offers_loading_widget.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/offers_page_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

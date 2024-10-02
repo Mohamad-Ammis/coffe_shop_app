@@ -10,6 +10,22 @@ class Assets {
   /// assets/images/Bag.svg
   static const String assetsImagesBag = "assets/images/Bag.svg";
 
+  /// Assets for assetsImagesBean
+  /// assets/images/bean.png
+  static const String assetsImagesBean = "assets/images/bean.png";
+
+  /// Assets for assetsImagesBeanIcon
+  /// assets/images/bean_icon.svg
+  static const String assetsImagesBeanIcon = "assets/images/bean_icon.svg";
+
+  /// Assets for assetsImagesDelivery
+  /// assets/images/delivery.png
+  static const String assetsImagesDelivery = "assets/images/delivery.png";
+
+  /// Assets for assetsImagesDeliveryIcon
+  /// assets/images/delivery_icon.svg
+  static const String assetsImagesDeliveryIcon = "assets/images/delivery_icon.svg";
+
   /// Assets for assetsImagesFilter
   /// assets/images/filter.svg
   static const String assetsImagesFilter = "assets/images/filter.svg";
@@ -21,6 +37,14 @@ class Assets {
   /// Assets for assetsImagesHome
   /// assets/images/home.svg
   static const String assetsImagesHome = "assets/images/home.svg";
+
+  /// Assets for assetsImagesMilk
+  /// assets/images/milk.png
+  static const String assetsImagesMilk = "assets/images/milk.png";
+
+  /// Assets for assetsImagesMilkIcon
+  /// assets/images/milk_icon.svg
+  static const String assetsImagesMilkIcon = "assets/images/milk_icon.svg";
 
   /// Assets for assetsImagesNotification
   /// assets/images/Notification.svg

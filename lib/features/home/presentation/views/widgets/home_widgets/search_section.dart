@@ -1,6 +1,6 @@
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/app_style.dart';
-import 'package:coffe_shop/features/home/presentation/views/widgets/custom_search_textfield.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/custom_search_textfield.dart';
 import 'package:flutter/material.dart';
 
 class SearchSection extends StatelessWidget {

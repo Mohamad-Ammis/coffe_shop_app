@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:coffe_shop/constans.dart';
@@ -26,6 +25,7 @@ class ProductCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          //image and reate section
           Expanded(
             child: Stack(
               clipBehavior: Clip.hardEdge,
@@ -80,6 +80,7 @@ class ProductCard extends StatelessWidget {
               ],
             ),
           ),
+          //info Section
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,6 +109,7 @@ class ProductCard extends StatelessWidget {
                     height: 10,
                   ),
                 ),
+                //footer and add to cart button
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:coffe_shop/features/home/data/models/offer_product_model.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,6 @@ class OffersCardIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log('offers: $offers');
     if (offers.isNotEmpty) {
       return Container(
         width: 300,
