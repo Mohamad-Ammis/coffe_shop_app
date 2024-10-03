@@ -1,5 +1,6 @@
 import 'package:coffe_shop/core/utils/api_keys.dart';
 import 'package:coffe_shop/core/utils/app_routes.dart';
+import 'package:coffe_shop/core/utils/service_locator.dart';
 import 'package:coffe_shop/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -16,10 +17,11 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  setup();
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
-      builder: (context) =>const  MyApp(), // Wrap your app
+      builder: (context) => const MyApp(), // Wrap your app
     ),
   );
 }

@@ -18,6 +18,10 @@ class Assets {
   /// assets/images/bean_icon.svg
   static const String assetsImagesBeanIcon = "assets/images/bean_icon.svg";
 
+  /// Assets for assetsImagesCreditCard
+  /// assets/images/credit-card.png
+  static const String assetsImagesCreditCard = "assets/images/credit-card.png";
+
   /// Assets for assetsImagesDelivery
   /// assets/images/delivery.png
   static const String assetsImagesDelivery = "assets/images/delivery.png";
@@ -53,6 +57,10 @@ class Assets {
   /// Assets for assetsImagesOffers
   /// assets/images/offers.png
   static const String assetsImagesOffers = "assets/images/offers.png";
+
+  /// Assets for assetsImagesPaypal
+  /// assets/images/paypal.png
+  static const String assetsImagesPaypal = "assets/images/paypal.png";
 
   /// Assets for assetsImagesSearchIcon
   /// assets/images/search_icon.svg

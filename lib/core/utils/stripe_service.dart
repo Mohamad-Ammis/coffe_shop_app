@@ -11,7 +11,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 class StripeService {
-  final ApiService apiService = ApiService();
+  final ApiService apiService ;
+
+  StripeService({required this.apiService});
   Future<PaymentIntentModel> createPaymentIntent(
       PaymentIntentInputModel model) async {
     var response = await apiService.post(

@@ -9,7 +9,9 @@ import 'package:coffe_shop/features/home/data/repos/Home_repo.dart';
 import 'package:dartz/dartz.dart';
 
 class HomeRepoImplementation implements HomeRepo {
-  final FirebaseService firebaseService = FirebaseService();
+  final FirebaseService firebaseService;
+
+  HomeRepoImplementation({required this.firebaseService});
   @override
   Future<Either<Failure, List<ProductModel>>> getAllProducts(
       {required String collectionName}) async {

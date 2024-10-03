@@ -1,8 +1,10 @@
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/error_navigate_screen.dart';
+import 'package:coffe_shop/core/utils/service_locator.dart';
 import 'package:coffe_shop/features/checkout/data/repo/checkout_repo_impl.dart';
 import 'package:coffe_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
 import 'package:coffe_shop/features/home/data/models/product_model.dart';
+import 'package:coffe_shop/features/home/data/repos/home_repo_implementation.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/category_cubit/category_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/cubit/offers_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/product_cubit/product_cubit.dart';
@@ -27,15 +29,15 @@ class AppRouter {
         builder: (context, state) => MultiBlocProvider(
           providers: [
             BlocProvider<ProductCubit>(
-              create: (context) => ProductCubit()
+              create: (context) => ProductCubit(homeRepo:getIt.get<HomeRepoImplementation>())
                 ..getAllProducts(collectionName: kProductsCollection),
             ),
             BlocProvider<CategoryCubit>(
-              create: (context) => CategoryCubit()
+              create: (context) => CategoryCubit(homeRepo:getIt.get<HomeRepoImplementation>() )
                 ..getAllCategories(collectionName: kCategoriesCollection),
             ),
             BlocProvider<OffersCubit>(
-              create: (context) => OffersCubit()
+              create: (context) => OffersCubit(homeRepo:getIt.get<HomeRepoImplementation>() )
                 ..getAllOffers(collectionName: kOffersCollection),
             ),
           ],
@@ -49,7 +51,7 @@ class AppRouter {
             return const NavigateErrorScreen();
           }
           return BlocProvider(
-            create: (context) => CheckoutCubit(CheckoutRepoImpl()),
+            create: (context) => CheckoutCubit(getIt.get<CheckoutRepoImpl>()),
             child: ProductDetailsView(product: state.extra as ProductModel),
           );
         },

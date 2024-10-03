@@ -21,19 +21,12 @@ class DescriptionSection extends StatelessWidget {
           style: Styles.style20SemiBold,
         ),
         product.description.isNotEmpty
-            ? Container(
-                constraints: const BoxConstraints(minHeight: 0, maxHeight: 60),
-                child: Scrollbar(
-                  child: SingleChildScrollView(
-                    child: Text(
-                      product.description,
-                      // maxLines: 3,
-                      overflow: TextOverflow.visible,
-                      style: Styles.style14Regular
-                          .copyWith(color: kLightSubTitleColor),
-                    ),
-                  ),
-                ),
+            ? Text(
+                product.description,
+                // maxLines: 3,
+                overflow: TextOverflow.visible,
+                style:
+                    Styles.style14Regular.copyWith(color: kLightSubTitleColor),
               )
             : Text(
                 "There is No Description added by product owner",

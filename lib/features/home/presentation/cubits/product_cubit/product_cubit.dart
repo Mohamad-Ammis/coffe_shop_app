@@ -10,11 +10,11 @@ import 'package:meta/meta.dart';
 part 'product_state.dart';
 
 class ProductCubit extends Cubit<ProductState> {
-  ProductCubit() : super(ProductInitial());
+  final HomeRepo homeRepo ;
   Timer? _debounce;
   String selectedCategory = 'All Coffee';
+  ProductCubit({required this.homeRepo}) : super(ProductInitial());
 
-  final HomeRepo homeRepo = HomeRepoImplementation();
   Future getAllProducts({required String collectionName}) async {
     try {
       emit(ProductLoading());

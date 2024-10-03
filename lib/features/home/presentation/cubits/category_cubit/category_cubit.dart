@@ -6,9 +6,9 @@ import 'package:meta/meta.dart';
 
 part 'category_state.dart';
 class CategoryCubit extends Cubit<CategoryState> {
-  final HomeRepo homeRepo = HomeRepoImplementation();
+  final HomeRepo homeRepo;
 
-  CategoryCubit() : super(CategoryInitial());
+  CategoryCubit({required this.homeRepo}) : super(CategoryInitial());
 
   Future getAllCategories({required String collectionName}) async {
     try {

@@ -33,7 +33,7 @@ class ProductModel {
   }
 
   // تحويل من Product إلى Map
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'image': image,
       'rate_counts': rateCounts,

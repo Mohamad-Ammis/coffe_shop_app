@@ -11,3 +11,5 @@ const double kMainPagePadding = 24;
 const kProductsCollection = 'products';
 const kCategoriesCollection = 'categories';
 const kOffersCollection = 'offers';
+const kOrdersCollection = 'orders';
+const kPaymentCurrency = 'USD';

@@ -7,8 +7,8 @@ import 'package:meta/meta.dart';
 part 'offers_state.dart';
 
 class OffersCubit extends Cubit<OffersState> {
-  OffersCubit() : super(OffersInitial());
-  final HomeRepo homeRepo = HomeRepoImplementation();
+  OffersCubit({required this.homeRepo}) : super(OffersInitial());
+  final HomeRepo homeRepo;
   Future getAllOffers(
       {required String collectionName}) async {
     try {

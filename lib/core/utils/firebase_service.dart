@@ -64,7 +64,7 @@ class FirebaseService {
           .where('category', isEqualTo: selectedCategory)
           .get();
     }
-    
+
     List<Map<String, dynamic>> products = [];
     for (var doc in querySnapshot.docs) {
       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
@@ -77,5 +77,18 @@ class FirebaseService {
     }
     log('products: $products');
     return products;
+  }
+
+  Future<bool> add(
+      {required String collectionName,
+      required Map<String, dynamic> item}) async {
+    await _firestore.collection(collectionName).add(item).then((value) {
+      log('item added Successfully');
+      return true;
+    }).catchError((error) {
+      log('Failed to add user: $error');
+      return false;
+    });
+    return false;
   }
 }
