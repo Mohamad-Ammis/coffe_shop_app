@@ -1,5 +1,7 @@
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/error_navigate_screen.dart';
+import 'package:coffe_shop/features/checkout/data/repo/checkout_repo_impl.dart';
+import 'package:coffe_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
 import 'package:coffe_shop/features/home/data/models/product_model.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/category_cubit/category_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/cubit/offers_cubit.dart';
@@ -46,7 +48,10 @@ class AppRouter {
           if (state.extra == null) {
             return const NavigateErrorScreen();
           }
-          return ProductDetailsView(product: state.extra as ProductModel);
+          return BlocProvider(
+            create: (context) => CheckoutCubit(CheckoutRepoImpl()),
+            child: ProductDetailsView(product: state.extra as ProductModel),
+          );
         },
       ),
     ],

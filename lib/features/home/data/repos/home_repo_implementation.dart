@@ -11,7 +11,7 @@ import 'package:dartz/dartz.dart';
 class HomeRepoImplementation implements HomeRepo {
   final FirebaseService firebaseService = FirebaseService();
   @override
-  Future<Either<Faliure, List<ProductModel>>> getAllProducts(
+  Future<Either<Failure, List<ProductModel>>> getAllProducts(
       {required String collectionName}) async {
     try {
       var data =
@@ -27,7 +27,7 @@ class HomeRepoImplementation implements HomeRepo {
   }
 
   @override
-  Future<Either<Faliure, List<ProductModel>>> getProductsByCategory(
+  Future<Either<Failure, List<ProductModel>>> getProductsByCategory(
       {required String collectionName, required String category}) async {
     try {
       var data = await firebaseService.getProductsByCategory(
@@ -43,7 +43,7 @@ class HomeRepoImplementation implements HomeRepo {
   }
 
   @override
-  Future<Either<Faliure, List<CategoryModel>>> getAllCategories(
+  Future<Either<Failure, List<CategoryModel>>> getAllCategories(
       {required String collectionName}) async {
     try {
       var data =
@@ -59,7 +59,7 @@ class HomeRepoImplementation implements HomeRepo {
   }
 
   @override
-  Future<Either<Faliure, List<OfferProductModel>>> getAllOffers(
+  Future<Either<Failure, List<OfferProductModel>>> getAllOffers(
       {required String collectionName}) async {
     try {
       var data = await firebaseService.getAllData(
@@ -75,7 +75,7 @@ class HomeRepoImplementation implements HomeRepo {
   }
 
   @override
-  Future<Either<Faliure, List<ProductModel>>> searchProducts(
+  Future<Either<Failure, List<ProductModel>>> searchProducts(
       {required String collectionName,
       required String selectedCategory,
       required String searchText}) async {

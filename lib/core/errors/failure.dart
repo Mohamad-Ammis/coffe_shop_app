@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-abstract class Faliure {
+abstract class Failure {
   final String errorMessage;
 
-  Faliure({required this.errorMessage});
+  Failure({required this.errorMessage});
 }
 
-class ServerFaliure extends Faliure {
+class ServerFaliure extends Failure {
   ServerFaliure({required super.errorMessage});
   factory ServerFaliure.fromDioException(DioException dioException) {
     switch (dioException.type) {
@@ -20,7 +20,6 @@ class ServerFaliure extends Faliure {
         return ServerFaliure(errorMessage: 'Receive timeout with api server');
       case DioExceptionType.badCertificate:
         return ServerFaliure(errorMessage: 'bad Certificate with api server');
-
       case DioExceptionType.badResponse:
         return ServerFaliure.fromResponse(
             dioException.response!.statusCode!, dioException.response!.data);
