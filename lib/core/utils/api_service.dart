@@ -23,4 +23,19 @@ class ApiService {
                 }));
     return response;
   }
+  Future<Response> get(
+      {required String url,
+      required token,
+      contentType,
+      Map<String, String>? headers}) async {
+    var response = await dio.get(url,
+        options: Options(
+            contentType: contentType,
+            headers: headers ??
+                {
+                  'Authorization': "Bearer $token",
+                  // "Content-Type": 'application/x-www-form-urlencoded'
+                }));
+    return response;
+  }
 }

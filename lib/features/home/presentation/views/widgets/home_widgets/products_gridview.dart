@@ -1,6 +1,8 @@
 import 'package:coffe_shop/core/utils/app_routes.dart';
 import 'package:coffe_shop/core/utils/app_style.dart';
 import 'package:coffe_shop/core/utils/assets.dart';
+import 'package:coffe_shop/core/utils/service_locator.dart';
+import 'package:coffe_shop/core/utils/stripe_service.dart';
 import 'package:coffe_shop/core/widgets/custom_error_widget.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/product_card.dart';
@@ -36,9 +38,10 @@ class ProductsGridView extends StatelessWidget {
                       crossAxisSpacing: 16),
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: () {
-                        context.push(AppRouter.kProductDetialsViewPath,
-                            extra: state.products[index]);
+                      onTap: () async {
+                        await getIt
+                            .get<StripeService>()
+                            .getCustomer(email: 'esd67618@gmail.com');
                       },
                       child: ProductCard(
                         model: state.products[index],

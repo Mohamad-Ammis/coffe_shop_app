@@ -5,7 +5,6 @@ class CustomerInputModel {
   final String? email;
   final String? paymentMethod;
   final String? coupon;
-
   CustomerInputModel(
       {this.name,
       this.phone,
@@ -13,7 +12,6 @@ class CustomerInputModel {
       this.email,
       this.paymentMethod,
       this.coupon});
-
   /// u can use more dependents on your requirments and all fields is on docs
   /// on https://docs.stripe.com/api/customers/create
   ///
