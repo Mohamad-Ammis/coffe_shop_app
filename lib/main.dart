@@ -7,6 +7,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+
+SharedPreferences? userInfo;
 
 //flutterfire configure --project=coffe-shop-f3918
 Future<void> main() async {
@@ -17,6 +21,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  userInfo = await SharedPreferences.getInstance();
   setup();
   runApp(
     DevicePreview(
