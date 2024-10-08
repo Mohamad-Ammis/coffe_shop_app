@@ -1,5 +1,5 @@
 import 'package:coffe_shop/core/widgets/custom_error_widget.dart';
-import 'package:coffe_shop/features/home/presentation/cubits/cubit/offers_cubit.dart';
+import 'package:coffe_shop/features/home/presentation/cubits/offers_cubit/offers_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/offers_card_indicator.dart';
 import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/offers_loading_widget.dart';
 import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/offers_page_view.dart';

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ImageButton extends StatelessWidget {
-  final String image ;
+  final String image;
   final void Function()? onTap;
-  final Widget child ;
-  const ImageButton({super.key, required this.image, this.onTap, required this.child});
+  final Widget child;
+  const ImageButton(
+      {super.key, required this.image, this.onTap, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -13,21 +14,21 @@ class ImageButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-           color:const Color(0xffEAEAEA),
-           borderRadius: BorderRadius.circular(25),
-           border: Border.all(
-            width: 1,
-            color: Colors.white
-           )
+          color: const Color(0xffEAEAEA).withOpacity(0.5),
+          borderRadius: BorderRadius.circular(25),
         ),
-        height: MediaQuery.of(context).size.height*0.085,
+        // height: MediaQuery.of(context).size.height * 0.085,
         alignment: Alignment.center,
-        width: MediaQuery.of(context).size.width*0.38,
-        padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height*0.025 , horizontal: 15),
+        // width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(vertical: 18, horizontal: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.asset(image,fit: BoxFit.contain,),
+            Image.asset(
+              width: 30,
+              image,
+              fit: BoxFit.contain,
+            ),
             child
           ],
         ),

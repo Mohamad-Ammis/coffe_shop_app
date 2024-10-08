@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:coffe_shop/core/utils/api_keys.dart';
 import 'package:coffe_shop/core/utils/api_service.dart';
@@ -11,7 +12,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 class StripeService {
-  final ApiService apiService ;
+  final ApiService apiService;
 
   StripeService({required this.apiService});
   Future<PaymentIntentModel> createPaymentIntent(
@@ -47,7 +48,21 @@ class StripeService {
         body: customerModel.toJson(),
         token: ApiKeys.secretKey);
     CustomerModel model = CustomerModel.fromJson(response.data);
+    log('create customer : ${response.data}');
     return model;
+  }
+
+  Future getCustomer({required String email}) async {
+    var response = await apiService.get(
+        url: 'https://api.stripe.com/v1/customers?email=$email',
+        token: ApiKeys.secretKey);
+    if (response.data?['data']?[0] != null) {
+      CustomerModel model = CustomerModel.fromJson(response.data['data'][0]);
+      log('GET CUSTOMER : $model');
+      return model;
+    } else {
+      throw Exception('un expected response when getCustomer data');
+    }
   }
 
   Future<EphemeralKeyModel> createEphemeralKey(

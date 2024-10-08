@@ -13,8 +13,8 @@ class AuthWithFacebook extends StatelessWidget {
       onTap: () {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(
-              CustomSnackBar().customSnackBar('Oops', "don't exist in your country", ContentType.failure));
+          ..showSnackBar(CustomSnackBar().customSnackBar(
+              'Oops', "don't exist in your country", ContentType.failure));
       },
       image: "assets/images/face.png",
       child: Text(

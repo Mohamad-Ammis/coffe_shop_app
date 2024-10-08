@@ -24,7 +24,7 @@ class _CustomLoginFieldsState extends State<CustomLoginFields> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
            CustomText(
-            title: "E_Mail",
+            title: "Email",
             size: 18,
             top: 10,
             left: MediaQuery.of(context).size.height * 0.013,

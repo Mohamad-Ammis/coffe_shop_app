@@ -10,11 +10,11 @@ class AuthWithSocial extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        AuthWithGoogle(),
+        Expanded(child: AuthWithGoogle()),
         SizedBox(
           width: 30,
         ),
-        AuthWithFacebook()
+        Expanded(child: AuthWithFacebook())
       ],
     );
   }

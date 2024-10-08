@@ -13,7 +13,7 @@ class RegisterInLogin extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "or creat an account ? ",
+              "or create an account ? ",
               style: GoogleFonts.montserrat(
                 color: Colors.black45,
                 fontSize: 12,
