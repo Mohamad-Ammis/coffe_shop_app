@@ -6,10 +6,11 @@ import 'package:coffe_shop/features/checkout/presentation/cubit/checkout_cubit.d
 import 'package:coffe_shop/features/home/data/models/product_model.dart';
 import 'package:coffe_shop/features/home/data/repos/home_repo_implementation.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/category_cubit/category_cubit.dart';
-import 'package:coffe_shop/features/home/presentation/cubits/cubit/offers_cubit.dart';
+import 'package:coffe_shop/features/home/presentation/cubits/offers_cubit/offers_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/views/home_view.dart';
 import 'package:coffe_shop/features/home/presentation/views/widgets/product_details_view.dart';
+import 'package:coffe_shop/features/orders/presentation/views/order_view.dart';
 import 'package:coffe_shop/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -18,6 +19,7 @@ class AppRouter {
 // GoRouter configuration
   static const String kHomeViewPath = '/homeView';
   static const String kProductDetialsViewPath = '/productDetails';
+  static const String kOrdersViewPath = '/orderView';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -56,6 +58,9 @@ class AppRouter {
           );
         },
       ),
+      GoRoute(path: kOrdersViewPath
+        ,builder: (context, state) => const OrderView(),
+      )
     ],
   );
 }

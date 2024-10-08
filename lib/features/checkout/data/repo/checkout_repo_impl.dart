@@ -14,7 +14,7 @@ class CheckoutRepoImpl implements CheckoutRepo {
       {required PaymentIntentInputModel model}) async {
     try {
       await stripeService.makePayment(model: model);
-      return Right(null);
+      return const Right(null);
     } on Exception catch (e) {
       // NOTE EXCEPTION MAY HAPPENED IF USER CANCEL THE PAYMENT IF U DONT USE TRY CATCH
       // SO FOR BETTER USER UX WE MUST HANDLE ERR MESSAGE

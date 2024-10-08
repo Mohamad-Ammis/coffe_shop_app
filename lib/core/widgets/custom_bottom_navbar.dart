@@ -1,26 +1,21 @@
-
+import 'package:coffe_shop/features/home/presentation/cubits/navigation_cubit/navigation_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:coffe_shop/core/utils/assets.dart';
 import 'package:coffe_shop/core/widgets/nav_bar_item.dart';
-import 'package:flutter/material.dart';
 
-class CustomBottomNavigationBar extends StatefulWidget {
+class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar({super.key});
 
   @override
-  State<CustomBottomNavigationBar> createState() =>
-      _CustomBottomNavigationBarState();
-}
-
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  int currentIndex = 0;
-  final List<String> images = [
-    Assets.assetsImagesHome,
-    Assets.assetsImagesHeart,
-    Assets.assetsImagesBag,
-    Assets.assetsImagesNotification,
-  ];
-  @override
   Widget build(BuildContext context) {
+    final List<String> images = [
+      Assets.assetsImagesHome,
+      Assets.assetsImagesHeart,
+      Assets.assetsImagesBag,
+      Assets.assetsImagesNotification,
+    ];
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
       decoration: const BoxDecoration(
@@ -32,13 +27,16 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           children: images
               .map((e) => GestureDetector(
                     onTap: () {
-                      currentIndex = images.indexOf(e);
-                      setState(() {});
+                      final index = images.indexOf(e);
+                      context.read<BottomNavCubit>().changeTab(index);
                     },
-                    child: NavBarItem(
-                      image: e,
-                      isActive:
-                          currentIndex == images.indexOf(e) ? true : false,
+                    child: BlocBuilder<BottomNavCubit, int>(
+                      builder: (context, state) {
+                        return NavBarItem(
+                          image: e,
+                          isActive: state == images.indexOf(e),
+                        );
+                      },
                     ),
                   ))
               .toList()),

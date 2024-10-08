@@ -1,4 +1,3 @@
-
 import 'package:coffe_shop/constans.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -29,7 +28,7 @@ class _NavBarItemState extends State<NavBarItem>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 500),
     );
 
     _colorAnimation = ColorTween(
@@ -56,7 +55,7 @@ class _NavBarItemState extends State<NavBarItem>
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 500),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -81,7 +80,7 @@ class _NavBarItemState extends State<NavBarItem>
             clipBehavior: Clip.hardEdge,
             width: widget.isActive ? 20 : 0,
             height: 5,
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 500),
           ),
         ],
       ),
