@@ -7,7 +7,7 @@ class SigninView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BackgroundView(
+    return  const BackgroundView(
       goback: false,
         screen: SignInBody());
   }

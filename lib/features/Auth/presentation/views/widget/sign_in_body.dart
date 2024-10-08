@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/app_routes.dart';

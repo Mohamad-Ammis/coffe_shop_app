@@ -20,7 +20,7 @@ class ImageButton extends StatelessWidget {
         // height: MediaQuery.of(context).size.height * 0.085,
         alignment: Alignment.center,
         // width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(vertical: 18, horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
