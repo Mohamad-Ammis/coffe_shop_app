@@ -19,6 +19,7 @@ class FirebaseService {
     }
     for (var doc in querySnapshot.docs) {
       Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+      data['id'] = doc.id;
       docList.add(data);
     }
     log('***********************get data Successfully*********************: \n $docList');

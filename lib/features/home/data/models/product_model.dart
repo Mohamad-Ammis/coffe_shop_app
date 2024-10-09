@@ -1,4 +1,5 @@
 class ProductModel {
+  final dynamic id;
   final String image;
   final num rateCounts;
   final List<String> sizes;
@@ -9,6 +10,7 @@ class ProductModel {
   final String category;
 
   ProductModel({
+    required this.id,
     required this.image,
     required this.rateCounts,
     required this.sizes,
@@ -29,6 +31,7 @@ class ProductModel {
       averageRate: data['average_rate'] as num? ?? 0.0,
       description: data['description'] ?? '',
       category: data['category'] ?? '',
+      id: data['id'],
     );
   }
 

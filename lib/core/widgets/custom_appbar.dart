@@ -7,10 +7,12 @@ import 'package:go_router/go_router.dart';
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppbar({
     super.key,
-    required this.title,  this.svgActionIcon,
+    required this.title,
+    this.svgActionIcon, this.hasBackIcon=false,
   });
   final String title;
   final String? svgActionIcon;
+  final bool hasBackIcon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,17 +21,16 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: kBackgroundColor,
         scrolledUnderElevation: 0,
         centerTitle: true,
-        leading: IconButton(
+        leading: hasBackIcon? IconButton(
             onPressed: () {
               GoRouter.of(context).pop();
             },
-            icon: const Icon(Icons.arrow_back_ios)),
+            icon: const Icon(Icons.arrow_back_ios)):null,
         title: Text(
           title,
           style: Styles.style16SemiBold,
         ),
-        
-        actions: [if(svgActionIcon!=null)SvgPicture.asset(svgActionIcon!)],
+        actions: [if (svgActionIcon != null) SvgPicture.asset(svgActionIcon!)],
       ),
     );
   }

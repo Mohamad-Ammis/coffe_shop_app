@@ -17,6 +17,8 @@ import 'package:coffe_shop/features/home/presentation/cubits/offers_cubit/offers
 import 'package:coffe_shop/features/home/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/views/home_view.dart';
 import 'package:coffe_shop/features/home/presentation/views/widgets/product_details_view.dart';
+import 'package:coffe_shop/features/orders/data/repo/order_repo_implementation.dart';
+import 'package:coffe_shop/features/orders/presentation/cubits/cubit/get_orders_cubit.dart';
 import 'package:coffe_shop/features/orders/presentation/views/order_view.dart';
 import 'package:coffe_shop/features/splash/presentation/views/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,7 +50,6 @@ class AppRouter {
             BlocProvider<GoogleSignInCubit>(
                 create: (context) =>
                     GoogleSignInCubit(getIt.get<AuthRepoImp>())),
-
           ],
           child: const SigninView(),
         ),
@@ -62,7 +63,6 @@ class AppRouter {
             BlocProvider<GoogleSignInCubit>(
                 create: (context) =>
                     GoogleSignInCubit(getIt.get<AuthRepoImp>())),
-
           ],
           child: const SignUpView(),
         ),
@@ -104,7 +104,12 @@ class AppRouter {
       ),
       GoRoute(
         path: kOrdersViewPath,
-        builder: (context, state) => const OrderView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              GetOrdersCubit(orderRepo: getIt.get<OrderRepoImplementation>())
+                ..getAllOrders(),
+          child: const OrderView(),
+        ),
       )
     ],
   );

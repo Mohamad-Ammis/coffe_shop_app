@@ -12,8 +12,8 @@ class OrderRepoImplementation implements OrderRepo {
   @override
   Future<Either<Failure, List<OrderModel>>> getAllOrders() async {
     try {
-      var data =
-          await firebaseService.getAllData(collectionName: kOrdersCollection);
+      var data = await firebaseService.getAllData(
+          collectionName: kOrdersCollection, sortData: false);
       List<OrderModel> orders = [];
       for (var order in data) {
         orders.add(OrderModel.fromJson(order));
