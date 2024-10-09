@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:coffe_shop/constans.dart';
-import 'package:coffe_shop/core/models/order_model.dart';
+import 'package:coffe_shop/features/orders/data/models/order_model.dart';
 import 'package:coffe_shop/core/utils/app_style.dart';
 import 'package:coffe_shop/core/utils/firebase_service.dart';
 import 'package:coffe_shop/core/utils/functions/calculate_stripe_amounts_in_cents.dart';

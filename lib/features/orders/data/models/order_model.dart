@@ -28,4 +28,19 @@ class OrderModel {
       "products":products
     };
   }
+  
+  factory OrderModel.fromJson(json) {
+    // List<ProductModel> temp = [];
+    // for (var element in json['products']) {
+    //   temp.add(ProductModel.fromjson(element));
+    // }
+    return OrderModel(
+        clientId: json['client_id'],
+        status: json['status'],
+        currency: json['currency'],
+        price: json['price'],
+        totalItems: json['total_items'],
+        createdAt: json['created_at'],
+        products: json['products']);
+  }
 }
