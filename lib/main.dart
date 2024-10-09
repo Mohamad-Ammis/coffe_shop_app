@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:coffe_shop/core/utils/api_keys.dart';
 import 'package:coffe_shop/core/utils/app_routes.dart';
 import 'package:coffe_shop/core/utils/service_locator.dart';
@@ -6,7 +8,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 SharedPreferences? userInfo;
 
@@ -23,6 +24,7 @@ Future<void> main() async {
   runApp(
     const MyApp(), // Wrap your app
   );
+  log(userInfo!.getString('payment_token').toString());
 }
 
 class MyApp extends StatelessWidget {

@@ -43,14 +43,12 @@ class AppRouter {
         path: kLoginView,
         builder: (context, state) => MultiBlocProvider(
           providers: [
-             BlocProvider<LoginCubit>(
-              create: (context) =>
-                  LoginCubit(getIt.get<AuthRepoImp>())
-            ),
+            BlocProvider<LoginCubit>(
+                create: (context) => LoginCubit(getIt.get<AuthRepoImp>())),
             BlocProvider<GoogleSignInCubit>(
-              create: (context) =>
-                  GoogleSignInCubit(getIt.get<AuthRepoImp>())
-            ),
+                create: (context) =>
+                    GoogleSignInCubit(getIt.get<AuthRepoImp>())),
+
           ],
           child: const SigninView(),
         ),
@@ -59,14 +57,12 @@ class AppRouter {
         path: ksignupView,
         builder: (context, state) => MultiBlocProvider(
           providers: [
-             BlocProvider<RegisterCubit>(
-              create: (context) =>
-                  RegisterCubit(getIt.get<AuthRepoImp>())
-            ),
+            BlocProvider<RegisterCubit>(
+                create: (context) => RegisterCubit(getIt.get<AuthRepoImp>())),
             BlocProvider<GoogleSignInCubit>(
-              create: (context) =>
-                  GoogleSignInCubit(getIt.get<AuthRepoImp>())
-            ),
+                create: (context) =>
+                    GoogleSignInCubit(getIt.get<AuthRepoImp>())),
+
           ],
           child: const SignUpView(),
         ),
@@ -106,8 +102,9 @@ class AppRouter {
           );
         },
       ),
-      GoRoute(path: kOrdersViewPath
-        ,builder: (context, state) => const OrderView(),
+      GoRoute(
+        path: kOrdersViewPath,
+        builder: (context, state) => const OrderView(),
       )
     ],
   );

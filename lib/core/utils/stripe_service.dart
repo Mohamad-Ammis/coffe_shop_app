@@ -8,6 +8,7 @@ import 'package:coffe_shop/features/checkout/data/models/ephemeral_key_model/eph
 import 'package:coffe_shop/features/checkout/data/models/init_payment_sheet_model.dart';
 import 'package:coffe_shop/features/checkout/data/models/payment_intent_input_model.dart';
 import 'package:coffe_shop/features/checkout/data/models/payment_intent_model/payment_intent_model.dart';
+import 'package:coffe_shop/main.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
@@ -42,26 +43,43 @@ class StripeService {
     await Stripe.instance.presentPaymentSheet();
   }
 
-  Future createCustomer(CustomerInputModel customerModel) async {
-    var response = await apiService.post(
-        url: 'https://api.stripe.com/v1/customers',
-        body: customerModel.toJson(),
-        token: ApiKeys.secretKey);
-    CustomerModel model = CustomerModel.fromJson(response.data);
-    log('create customer : ${response.data}');
-    return model;
+  Future createCustomer({required CustomerInputModel customerModel}) async {
+    try {
+      var response = await apiService.post(
+          contentType: 'application/x-www-form-urlencoded',
+          url: 'https://api.stripe.com/v1/customers',
+          body: customerModel.toJson(),
+          token: ApiKeys.secretKey);
+      CustomerModel model = CustomerModel.fromJson(response.data);
+      log('create customer : ${response.data}');
+      userInfo!.setString('payment_token', model.id ?? "");
+      return true;
+    } on Exception catch (e) {
+      log('e: $e');
+      return false;
+    }
   }
 
   Future getCustomer({required String email}) async {
-    var response = await apiService.get(
-        url: 'https://api.stripe.com/v1/customers?email=$email',
-        token: ApiKeys.secretKey);
-    if (response.data?['data']?[0] != null) {
-      CustomerModel model = CustomerModel.fromJson(response.data['data'][0]);
-      log('GET CUSTOMER : $model');
-      return model;
-    } else {
-      throw Exception('un expected response when getCustomer data');
+    try {
+      var response = await apiService.get(
+          url: 'https://api.stripe.com/v1/customers?email=$email',
+          token: ApiKeys.secretKey);
+      List<dynamic> test = response.data?['data'];
+      if (test.isNotEmpty) {
+        if (response.data?['data']?[0] != null) {
+          CustomerModel model =
+              CustomerModel.fromJson(response.data['data'][0]);
+          log('GET CUSTOMER : ${response.data}');
+          userInfo!.setString('payment_token', model.id ?? "");
+          return true;
+        }
+      } else {
+        return false;
+      }
+    } on Exception catch (e) {
+      log('e: $e');
+      return false;
     }
   }
 

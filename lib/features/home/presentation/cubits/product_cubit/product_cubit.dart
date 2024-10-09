@@ -36,7 +36,7 @@ class ProductCubit extends Cubit<ProductState> {
       {required String collectionName, required String category}) async {
     try {
       emit(ProductLoading());
-      var data;
+      dynamic data;
       if (category == 'All Coffee') {
         data = await homeRepo.getAllProducts(collectionName: collectionName);
       } else {
@@ -64,7 +64,7 @@ class ProductCubit extends Cubit<ProductState> {
     }
     _debounce = Timer(const Duration(milliseconds: 500), () async {
       try {
-        var data;
+        dynamic data;
         log('category $selectedCategory');
         log('searchText $searchText');
         data = await homeRepo.searchProducts(

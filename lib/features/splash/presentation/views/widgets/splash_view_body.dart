@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:coffe_shop/core/utils/app_routes.dart';
 import 'package:coffe_shop/core/utils/assets.dart';
 import 'package:coffe_shop/features/splash/presentation/views/widgets/sliding_text.dart';

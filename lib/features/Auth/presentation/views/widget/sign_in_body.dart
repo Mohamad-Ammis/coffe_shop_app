@@ -4,6 +4,8 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/app_routes.dart';
 import 'package:coffe_shop/core/utils/custom_snackpar.dart';
+import 'package:coffe_shop/core/utils/service_locator.dart';
+import 'package:coffe_shop/core/utils/stripe_service.dart';
 import 'package:coffe_shop/core/widgets/custom_button.dart';
 import 'package:coffe_shop/features/Auth/presentation/manger/login_cubit/login_cubit.dart';
 import 'package:coffe_shop/features/Auth/presentation/views/widget/custom_auth_with_social.dart';
@@ -68,9 +70,13 @@ class _SignInBodyState extends State<SignInBody> {
                     try {
                       formkey.currentState!.save();
                       await BlocProvider.of<LoginCubit>(context).login(
+                          context: context,
                           email: BlocProvider.of<LoginCubit>(context).email,
                           password:
                               BlocProvider.of<LoginCubit>(context).password);
+
+                      getIt.get<StripeService>().getCustomer(
+                          email: BlocProvider.of<LoginCubit>(context).email);
                     } catch (error) {
                       ScaffoldMessenger.of(context)
                         ..hideCurrentSnackBar()
@@ -91,17 +97,20 @@ class _SignInBodyState extends State<SignInBody> {
                 child: BlocBuilder<LoginCubit, LoginState>(
                   builder: (context, state) {
                     if (state is LoginLoading) {
-                    return const CircularProgressIndicator(color: Colors.white,);
-                  } else{
-                    return const Text(
-                      "Log in ",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                      return const CircularProgressIndicator(
                         color: Colors.white,
-                        fontFamily: kFontFamily,
-                      ),
-                    );}
+                      );
+                    } else {
+                      return const Text(
+                        "Log in ",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontFamily: kFontFamily,
+                        ),
+                      );
+                    }
                   },
                 ),
               ),

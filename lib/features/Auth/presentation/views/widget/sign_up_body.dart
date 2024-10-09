@@ -32,8 +32,9 @@ class _SignUpBodyState extends State<SignUpBody> {
         if (state is RegisterFailure) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
-            ..showSnackBar(CustomSnackBar().customSnackBar('Oops',state.errorMessage, ContentType.failure));
-        }else if(state is RegisterSuccess){
+            ..showSnackBar(CustomSnackBar().customSnackBar(
+                'Oops', state.errorMessage, ContentType.failure));
+        } else if (state is RegisterSuccess) {
           GoRouter.of(context).pushReplacement(AppRouter.kHomeViewPath);
         }
       },
@@ -65,11 +66,14 @@ class _SignUpBodyState extends State<SignUpBody> {
               onPressed: () async {
                 if (formkey.currentState!.validate()) {
                   try {
+                    var cubit = BlocProvider.of<RegisterCubit>(context);
                     formkey.currentState!.save();
-                    await BlocProvider.of<RegisterCubit>(context).register(
-                        email: BlocProvider.of<RegisterCubit>(context).email,
+                    await cubit.register(
+                        context: context,
+                        email: cubit.email,
                         password:
                             BlocProvider.of<RegisterCubit>(context).password);
+                    //cretae stripe user
                   } catch (error) {
                     ScaffoldMessenger.of(context)
                       ..hideCurrentSnackBar()
@@ -101,8 +105,10 @@ class _SignUpBodyState extends State<SignUpBody> {
                         fontFamily: kFontFamily,
                       ),
                     );
-                  }  else if (state is RegisterLoading) {
-                    return const CircularProgressIndicator(color: Colors.white,);
+                  } else if (state is RegisterLoading) {
+                    return const CircularProgressIndicator(
+                      color: Colors.white,
+                    );
                   } else {
                     return const Text(
                       "Sign Up ",

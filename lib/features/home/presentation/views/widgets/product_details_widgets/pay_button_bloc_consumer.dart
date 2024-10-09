@@ -9,6 +9,7 @@ import 'package:coffe_shop/core/widgets/custom_loading_widget.dart';
 import 'package:coffe_shop/features/checkout/data/models/payment_intent_input_model.dart';
 import 'package:coffe_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
 import 'package:coffe_shop/features/home/data/models/product_model.dart';
+import 'package:coffe_shop/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,7 +34,8 @@ class PayButtonBlocConsumer extends StatelessWidget {
                             amount: calculateStripePaymentAmountInCents(
                                 price: product.price),
                             currency: kPaymentCurrency,
-                            customerId: 'cus_Qxii3NEtlmDshB'));
+                            customerId:
+                                userInfo!.getString('payment_token') ?? ''));
                   },
             child: Container(
               height: 55,
