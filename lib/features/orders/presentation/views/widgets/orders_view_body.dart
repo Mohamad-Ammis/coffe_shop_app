@@ -1,8 +1,5 @@
 import 'package:coffe_shop/constans.dart';
-import 'package:coffe_shop/core/utils/app_style.dart';
-import 'package:coffe_shop/core/utils/extensions.dart';
-import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/product_card.dart';
-import 'package:coffe_shop/features/orders/presentation/views/widgets/order_card.dart';
+import 'package:coffe_shop/features/orders/presentation/views/widgets/orders_list_view.dart';
 import 'package:flutter/material.dart';
 
 class OrdersViewBody extends StatelessWidget {
@@ -10,11 +7,9 @@ class OrdersViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(kMainPagePadding),
-      child: Column(
-        children: [OrderCard()],
-      ),
+    return const Padding(
+      padding: EdgeInsets.all(kMainPagePadding),
+      child: OrdersListView(),
     );
   }
 }

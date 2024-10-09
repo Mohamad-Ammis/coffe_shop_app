@@ -5,10 +5,12 @@ class OrderModel {
   final num price;
   final num totalItems;
   final String createdAt;
+  final String status;
   final List<Map<String, dynamic>> products;
 
   OrderModel(
       {required this.clientId,
+      required this.status, 
       required this.currency,
       required this.price,
       required this.totalItems,
@@ -22,20 +24,8 @@ class OrderModel {
       "currency": currency,
       "total_items": totalItems,
       "created_at": DateTime.now().toString(),
+      "status":status,
       "products":products
-      //  [
-      //   {
-      //     'name': 'product',
-      //     'category ': 'Espresso',
-      //     'description': 'desc',
-      //     'image ': 'image',
-      //     'price': 19,
-      //     'average_rate': 2.1,
-      //     'rate_counts': 12,
-      //     'sizes ': ["s", "m", "l"]
-      //   },
-      //   {}
-      // ]
     };
   }
 }

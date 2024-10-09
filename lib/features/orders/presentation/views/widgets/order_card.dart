@@ -1,4 +1,4 @@
-
+import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/extensions.dart';
 import 'package:coffe_shop/features/orders/presentation/views/widgets/order_card_header.dart';
 import 'package:coffe_shop/features/orders/presentation/views/widgets/order_card_info_section.dart';
@@ -12,18 +12,17 @@ class OrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-            blurRadius: 20,
-            spreadRadius: 2,
-            color: Colors.blueGrey.withOpacity(.2))
-      ], color: Colors.white, borderRadius: BorderRadius.circular(8)),
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      decoration: BoxDecoration(
+          border: Border.all(width: .2, color: kLightSubTitleColor),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8)),
       child: Column(
         children: [
-          OrderCardHeader(),
+          const OrderCardHeader(),
           22.verticalSizedBox,
-          OrderCardInfoSection()
+          const OrderCardInfoSection()
         ],
       ),
     );

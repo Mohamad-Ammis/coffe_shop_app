@@ -8,7 +8,7 @@ class OrderView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: CustomAppbar(
         title: 'My Orders',

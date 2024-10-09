@@ -12,7 +12,7 @@ class OrderCardHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        const Text(
           'Order #1298',
           style: Styles.style16SemiBold,
         ),
@@ -21,7 +21,7 @@ class OrderCardHeader extends StatelessWidget {
               color: Colors.blue,
               borderRadius: BorderRadius.circular(999)),
           padding:
-              EdgeInsets.symmetric(horizontal: 22, vertical: 6),
+              const EdgeInsets.symmetric(horizontal: 22, vertical: 6),
           child: Text(
             'Paid',
             style:

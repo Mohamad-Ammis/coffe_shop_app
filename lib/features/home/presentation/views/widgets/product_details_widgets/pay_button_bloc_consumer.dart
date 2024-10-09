@@ -68,12 +68,12 @@ class PayButtonBlocConsumer extends StatelessWidget {
           firebaseService.add(
               collectionName: kOrdersCollection,
               item: OrderModel(
-                  clientId: 'clientId',
+                  clientId: userInfo!.getString('payment_token') ?? '',
                   currency: kPaymentCurrency,
                   price: product.price,
                   totalItems: 1,
                   createdAt: DateTime.now().toString(),
-                  products: [product.toJson()]).toJson());
+                  products: [product.toJson()], status: 'Paid').toJson());
         } else if (state is CheckoutFailure) {
           log(state.errMessage);
           ScaffoldMessenger.of(context)
