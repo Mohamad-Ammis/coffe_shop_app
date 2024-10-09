@@ -7,10 +7,10 @@ import 'package:go_router/go_router.dart';
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppbar({
     super.key,
-    required this.title, required this.svgActionIcon,
+    required this.title,  this.svgActionIcon,
   });
   final String title;
-  final String svgActionIcon;
+  final String? svgActionIcon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,7 +28,8 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
           title,
           style: Styles.style16SemiBold,
         ),
-        actions: [SvgPicture.asset(svgActionIcon)],
+        
+        actions: [if(svgActionIcon!=null)SvgPicture.asset(svgActionIcon!)],
       ),
     );
   }

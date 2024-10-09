@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 class Styles {
   static const TextStyle style8SemiBold = TextStyle(
       fontFamily: kFontFamily, fontSize: 8, fontWeight: FontWeight.w600);
+  static const TextStyle style10Regular = TextStyle(
+      fontFamily: kFontFamily, fontSize: 10, fontWeight: FontWeight.w400);
   static const TextStyle style12Regular = TextStyle(
       fontFamily: kFontFamily, fontSize: 12, fontWeight: FontWeight.w400);
   static const TextStyle style14SemiBold =  TextStyle(
