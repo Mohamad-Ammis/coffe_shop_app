@@ -1,3 +1,4 @@
+import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/app_style.dart';
 import 'package:coffe_shop/features/orders/data/models/order_model.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class OrderCardHeader extends StatelessWidget {
         ),
         Container(
           decoration: BoxDecoration(
-              color: Colors.blue, borderRadius: BorderRadius.circular(999)),
+              color: kPrimaryColor, borderRadius: BorderRadius.circular(999)),
           padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 6),
           child: Text(
             order.status.toString(),

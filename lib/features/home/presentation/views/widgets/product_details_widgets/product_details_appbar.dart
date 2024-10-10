@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:coffe_shop/core/utils/app_style.dart';
 import 'package:coffe_shop/core/widgets/custom_loading_widget.dart';
 import 'package:coffe_shop/features/home/data/models/product_model.dart';
-import 'package:coffe_shop/features/home/presentation/cubits/cubit/favorite_cubit.dart';
+import 'package:coffe_shop/features/favorite/presentation/cubits/favorite_cubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
