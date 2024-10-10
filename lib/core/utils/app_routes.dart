@@ -13,6 +13,7 @@ import 'package:coffe_shop/features/checkout/presentation/cubit/checkout_cubit.d
 import 'package:coffe_shop/features/home/data/models/product_model.dart';
 import 'package:coffe_shop/features/home/data/repos/home_repo_implementation.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/category_cubit/category_cubit.dart';
+import 'package:coffe_shop/features/home/presentation/cubits/cubit/favorite_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/offers_cubit/offers_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/cubits/product_cubit/product_cubit.dart';
 import 'package:coffe_shop/features/home/presentation/views/home_view.dart';
@@ -96,10 +97,16 @@ class AppRouter {
           if (state.extra == null) {
             return const NavigateErrorScreen();
           }
-          return BlocProvider(
-            create: (context) => CheckoutCubit(getIt.get<CheckoutRepoImpl>()),
-            child: ProductDetailsView(product: state.extra as ProductModel),
-          );
+          return MultiBlocProvider(providers: [
+            BlocProvider(
+                create: (context) =>
+                    CheckoutCubit(getIt.get<CheckoutRepoImpl>())),
+            BlocProvider(create: (context) => FavoriteCubit()),
+          ], child: ProductDetailsView(product: state.extra as ProductModel));
+          // return BlocProvider(
+          //   create: (context) => CheckoutCubit(getIt.get<CheckoutRepoImpl>()),
+          //   child: ProductDetailsView(product: state.extra as ProductModel),
+          // );
         },
       ),
       GoRoute(
