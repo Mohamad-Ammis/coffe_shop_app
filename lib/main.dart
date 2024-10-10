@@ -4,6 +4,7 @@ import 'package:coffe_shop/core/utils/api_keys.dart';
 import 'package:coffe_shop/core/utils/app_routes.dart';
 import 'package:coffe_shop/core/utils/service_locator.dart';
 import 'package:coffe_shop/firebase_options.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -21,9 +22,11 @@ Future<void> main() async {
   );
   userInfo = await SharedPreferences.getInstance();
   setup();
-  runApp(
-    const MyApp(), // Wrap your app
-  );
+  runApp(DevicePreview(
+    builder: (context) {
+      return const MyApp(); // Wrap your app
+    },
+  ));
   log(userInfo!.getString('payment_token').toString());
 }
 

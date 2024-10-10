@@ -15,9 +15,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> getFavorites() async {
-    emit(FavoriteLoading());
-
     try {
+      emit(FavoriteLoading());
       User? currentUser = _auth.currentUser;
       if (currentUser == null) throw Exception("No user signed in");
 
@@ -35,14 +34,23 @@ class FavoriteCubit extends Cubit<FavoriteState> {
 
       log('favorites: $favorites');
 
-      emit(FavoriteSuccess(favorites));
+      try {
+  emit(FavoriteSuccess(favorites));
+} on StateError catch (e) {
+  log('e: $e');
+}
     } catch (e) {
-      emit(FavoriteFailure(e.toString()));
+      try {
+  emit(FavoriteFailure(e.toString()));
+} on StateError catch (e) {
+  log('e: $e');
+}
     }
   }
 
   Future<void> addToFavorites(ProductModel product) async {
     try {
+      emit(FavoriteLoading());
       User? currentUser = _auth.currentUser;
       if (currentUser == null) throw Exception("No user signed in");
 
@@ -53,14 +61,19 @@ class FavoriteCubit extends Cubit<FavoriteState> {
           .doc(product.id.toString())
           .set(product.toJson());
 
-      getFavorites(); 
+      getFavorites();
     } catch (e) {
-      emit(FavoriteFailure(e.toString()));
+      try {
+  emit(FavoriteFailure(e.toString()));
+} on StateError catch (e) {
+  log('e: $e');
+}
     }
   }
 
   Future<void> removeFromFavorites(ProductModel product) async {
     try {
+      emit(FavoriteLoading());
       User? currentUser = _auth.currentUser;
       if (currentUser == null) throw Exception("No user signed in");
 
@@ -71,9 +84,13 @@ class FavoriteCubit extends Cubit<FavoriteState> {
           .doc(product.id.toString())
           .delete();
 
-      getFavorites(); 
+      getFavorites();
     } catch (e) {
-      emit(FavoriteFailure(e.toString()));
+      try {
+  emit(FavoriteFailure(e.toString()));
+} on StateError catch (e) {
+  log('e: $e');
+}
     }
   }
 
@@ -89,5 +106,11 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         .get();
 
     return doc.exists;
+  }
+
+  @override
+  Future<void> close() {
+    log('close////////////*12312****3111111111111113');
+    return super.close();
   }
 }

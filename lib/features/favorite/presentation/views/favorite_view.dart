@@ -10,16 +10,16 @@ class FavoriteView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: kBackgroundColor,
-        appBar: CustomAppbar(
-          title: 'My Favorites',
-          hasBackIcon: false,
-          svgActionIcon: null,
-        ),
-        body: BlocProvider(
-          create: (context) => FavoriteCubit()..getFavorites(),
-          child: FavoriteViewBody(),
-        ));
+    return BlocProvider(
+      create: (context) => FavoriteCubit()..getFavorites(),
+      child: const Scaffold(
+          backgroundColor: kBackgroundColor,
+          appBar: CustomAppbar(
+            title: 'My Favorites',
+            hasBackIcon: false,
+            svgActionIcon: null,
+          ),
+          body: FavoriteViewBody()),
+    );
   }
 }
