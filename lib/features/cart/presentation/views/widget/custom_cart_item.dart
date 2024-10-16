@@ -1,5 +1,5 @@
 import 'package:coffe_shop/features/cart/data/model/item_cart_model.dart';
-import 'package:coffe_shop/features/cart/presentation/views/widget/details_cart-item.dart';
+import 'package:coffe_shop/features/cart/presentation/views/widget/details_cart_item.dart';
 import 'package:coffe_shop/features/cart/presentation/views/widget/image_cart_item.dart';
 import 'package:flutter/material.dart';
 

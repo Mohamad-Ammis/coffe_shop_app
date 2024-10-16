@@ -40,7 +40,7 @@ class CheckOutPart extends StatelessWidget {
                 BlocBuilder<CartCubit, CartState>(
                   builder: (context, state) {
                     return Text(
-                      r'$' '${BlocProvider.of<CartCubit>(context).total_num()}',
+                      r'$' '${BlocProvider.of<CartCubit>(context).totalNum()}',
                       style:
                           Styles.style18SemiBold.copyWith(color: kPrimaryColor),
                     );

@@ -25,7 +25,7 @@ class PaidBottomSheet extends StatelessWidget {
           child: ListView(
             children: [
               const Padding(
-                padding: const EdgeInsets.only(top: 15, left: 10),
+                padding:  EdgeInsets.only(top: 15, left: 10),
                 child: Text(
                   "Discount Coupon",
                   style: TextStyle(

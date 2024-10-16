@@ -101,10 +101,11 @@ class AppRouter {
           if (state.extra == null) {
             return const NavigateErrorScreen();
           }
-          return BlocProvider(
-            create: (context) => CheckoutCubit(getIt.get<CheckoutRepoImpl>()),
-            child: ProductDetailsView(product: state.extra as ProductModel),
-          );
+          return MultiBlocProvider(providers: [
+            BlocProvider(
+                create: (context) =>
+                    CheckoutCubit(getIt.get<CheckoutRepoImpl>())),
+          ], child: ProductDetailsView(product: state.extra as ProductModel));
         },
       ),
       GoRoute(

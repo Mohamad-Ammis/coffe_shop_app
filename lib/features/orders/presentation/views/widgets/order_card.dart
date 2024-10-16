@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 class OrderCard extends StatelessWidget {
   const OrderCard({
     super.key,
-    required this.order, required this.index,
+    required this.order,
+    required this.index,
   });
   final OrderModel order;
   final int index;
@@ -18,12 +19,12 @@ class OrderCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       decoration: BoxDecoration(
-          border: Border.all(width: .2, color: kLightSubTitleColor),
+          border: Border.all(width: .1, color: kLightSubTitleColor),
           color: Colors.white,
           borderRadius: BorderRadius.circular(8)),
       child: Column(
         children: [
-          OrderCardHeader(order: order,index:index),
+          OrderCardHeader(order: order, index: index),
           22.verticalSizedBox,
           OrderCardInfoSection(order: order)
         ],
