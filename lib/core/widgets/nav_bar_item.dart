@@ -13,11 +13,10 @@ class NavBarItem extends StatefulWidget {
   final bool isActive;
 
   @override
-  // ignore: library_private_types_in_public_api
-  _NavBarItemState createState() => _NavBarItemState();
+  NavBarItemState createState() => NavBarItemState();
 }
 
-class _NavBarItemState extends State<NavBarItem>
+class NavBarItemState extends State<NavBarItem>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Color?> _colorAnimation;
