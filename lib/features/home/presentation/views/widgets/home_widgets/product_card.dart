@@ -6,6 +6,7 @@ import 'package:coffe_shop/core/utils/assets.dart';
 import 'package:coffe_shop/core/utils/extensions.dart';
 import 'package:coffe_shop/core/widgets/custom_icon_button.dart';
 import 'package:coffe_shop/features/home/data/models/product_model.dart';
+import 'package:coffe_shop/features/home/presentation/views/widgets/home_widgets/size_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -121,7 +122,11 @@ class ProductCard extends StatelessWidget {
                         style: Styles.style18SemiBold,
                       ),
                     ),
-                    const CustomIconButton()
+                     CustomIconButton(
+                      onTap: (){
+                        showDialog(context: context, builder: (context)=> SizeDialog(model:model));
+                      },
+                    )
                   ],
                 ),
               ],

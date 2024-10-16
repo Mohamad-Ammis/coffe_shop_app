@@ -8,6 +8,7 @@ import 'package:coffe_shop/features/Auth/presentation/manger/register_cubit/regi
 import 'package:coffe_shop/features/Auth/presentation/views/on_boarding_view.dart';
 import 'package:coffe_shop/features/Auth/presentation/views/sign_in_view.dart';
 import 'package:coffe_shop/features/Auth/presentation/views/sign_up_view.dart';
+import 'package:coffe_shop/features/cart/presentation/views/cart.dart';
 import 'package:coffe_shop/features/checkout/data/repo/checkout_repo_impl.dart';
 import 'package:coffe_shop/features/checkout/presentation/cubit/checkout_cubit.dart';
 import 'package:coffe_shop/features/home/data/models/product_model.dart';
@@ -32,6 +33,7 @@ class AppRouter {
   static const String kLoginView = "/LoginView";
   static const String ksignupView = "/SignupView";
   static const String konboarding = "/Onboarding";
+  static const String kCartPage = "/cartpage";
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -41,6 +43,9 @@ class AppRouter {
       GoRoute(
           path: konboarding,
           builder: (context, state) => const OnBoardingView()),
+      GoRoute(
+          path: kCartPage,
+          builder: (context, state) => const Cart()),    
       GoRoute(
         path: kLoginView,
         builder: (context, state) => MultiBlocProvider(

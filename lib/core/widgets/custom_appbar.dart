@@ -9,10 +9,12 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.title,
     this.svgActionIcon, this.hasBackIcon=false,
+    this.style,
   });
   final String title;
   final String? svgActionIcon;
   final bool hasBackIcon;
+  final TextStyle? style ;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,7 +30,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
             icon: const Icon(Icons.arrow_back_ios)):null,
         title: Text(
           title,
-          style: Styles.style16SemiBold,
+          style:style?? Styles.style16SemiBold,
         ),
         actions: [if (svgActionIcon != null) SvgPicture.asset(svgActionIcon!)],
       ),
