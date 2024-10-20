@@ -1,9 +1,13 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/app_style.dart';
+import 'package:coffe_shop/core/utils/custom_snackpar.dart';
 import 'package:coffe_shop/core/utils/extensions.dart';
 import 'package:coffe_shop/core/widgets/custom_button.dart';
 import 'package:coffe_shop/features/cart/presentation/cubit/cart_cubit/cart_cubit.dart';
+import 'package:coffe_shop/features/cart/presentation/cubit/paid_cart_cubit/paid_cart_cubit.dart';
 import 'package:coffe_shop/features/cart/presentation/views/widget/paid_bottom_sheet.dart';
+import 'package:coffe_shop/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,7 +44,8 @@ class CheckOutPart extends StatelessWidget {
                 BlocBuilder<CartCubit, CartState>(
                   builder: (context, state) {
                     return Text(
-                      r'$' '${BlocProvider.of<CartCubit>(context).totalNum()}',
+                      r'$'
+                      '${(BlocProvider.of<CartCubit>(context).totalNum(BlocProvider.of<PaidCartCubit>(context).truecoupon)+1.05).toStringAsFixed(3)}',
                       style:
                           Styles.style18SemiBold.copyWith(color: kPrimaryColor),
                     );
@@ -51,19 +56,28 @@ class CheckOutPart extends StatelessWidget {
             const Spacer(),
             CustomButton(
                 onPressed: () {
-                  showModalBottomSheet(
-                      context: context,
-                      backgroundColor: kBackgroundColor,
-                      isScrollControlled: true,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30))),
-                      builder: (context) => const PaidBottomSheet());
+                  if (cartitem.isEmpty) {
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(CustomSnackBar().customSnackBar(
+                          'Oops', "List is empty", ContentType.failure));
+                  } else {
+                    showModalBottomSheet(
+                        context: context,
+                        backgroundColor: kBackgroundColor,
+                        isScrollControlled: true,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30))),
+                        builder: (context) => const PaidBottomSheet()).then((data){
+                           BlocProvider.of<PaidCartCubit>(context).dispose();
+                        });
+                  }
                 },
                 color: kPrimaryColor,
                 height: 55,
-                width: 200,
+                width: MediaQuery.of(context).size.width*0.45,
                 redbl: 20,
                 redbr: 20,
                 redtl: 20,

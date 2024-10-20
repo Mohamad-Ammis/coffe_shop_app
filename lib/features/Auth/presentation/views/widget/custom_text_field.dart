@@ -18,6 +18,7 @@ class CustomTextField extends StatefulWidget {
   final bool? isname ;
   final bool? isemail ;
   final bool? ispass ;
+  final bool? iscoupon ;
   const CustomTextField(
       {super.key,
       required this.hint,
@@ -30,7 +31,7 @@ class CustomTextField extends StatefulWidget {
       this.backgroundcolor,
       this.hintcolor,
       this.hintsize,
-      this.obscureText, this.isname, this.isemail, this.ispass});
+      this.obscureText, this.isname, this.isemail, this.ispass, this.iscoupon});
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -54,7 +55,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
              return FormValidators().emailValidator(data);
           }else if(widget.ispass!= null && widget.ispass == true){
             return FormValidators().strongPasswordValidator(data);
-          }else {
+          }else if(widget.iscoupon!= null && widget.iscoupon == true){
+            return validat(data);
+          }
+          else {
             return null ;
           }
         },

@@ -12,7 +12,7 @@ class CartItem extends StatelessWidget {
       color: Colors.white.withOpacity(0),
       margin: const EdgeInsets.only(bottom: 15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      elevation: 0.5,
+      elevation: 1,
       child: Container(
         height: 110,
         width: double.infinity,

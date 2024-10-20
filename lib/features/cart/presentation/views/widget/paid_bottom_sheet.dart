@@ -1,9 +1,14 @@
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/extensions.dart';
-import 'package:coffe_shop/core/widgets/custom_button.dart';
+import 'package:coffe_shop/features/cart/presentation/cubit/cart_cubit/cart_cubit.dart';
+import 'package:coffe_shop/features/cart/presentation/cubit/paid_cart_cubit/paid_cart_cubit.dart';
+import 'package:coffe_shop/features/cart/presentation/views/widget/check_coupon.dart';
+import 'package:coffe_shop/features/cart/presentation/views/widget/check_out_button.dart';
 import 'package:coffe_shop/features/cart/presentation/views/widget/coupon.dart';
 import 'package:coffe_shop/features/cart/presentation/views/widget/details_paid.dart';
+import 'package:coffe_shop/features/cart/presentation/views/widget/total_price.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PaidBottomSheet extends StatelessWidget {
   const PaidBottomSheet({super.key});
@@ -25,7 +30,7 @@ class PaidBottomSheet extends StatelessWidget {
           child: ListView(
             children: [
               const Padding(
-                padding:  EdgeInsets.only(top: 15, left: 10),
+                padding: EdgeInsets.only(top: 15, left: 10),
                 child: Text(
                   "Discount Coupon",
                   style: TextStyle(
@@ -37,7 +42,7 @@ class PaidBottomSheet extends StatelessWidget {
               ),
               25.verticalSizedBox,
               const Coupon(),
-              30.verticalSizedBox,
+              const CheckCoupon(),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Divider(
@@ -46,32 +51,16 @@ class PaidBottomSheet extends StatelessWidget {
                 ),
               ),
               10.verticalSizedBox,
-              const Detailspaid(title: "Sub total ", price: 5.95),
-              const Detailspaid(title: "Delivery fees ", price: 5.95),
-              const Detailspaid(title: "Total ", price: 5.95),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
-                child: CustomButton(
-                    redbl: 20,
-                    redbr: 20,
-                    redtl: 20,
-                    redtr: 20,
-                    color: kPrimaryColor,
-                    height: 55,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    child:const Text(
-                      "CheckOut",
-                      style: TextStyle(
-                          fontFamily: kFontFamily,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    )),
-              )
+              Detailspaid(
+                  title: "Sub total ",
+                  price: (BlocProvider.of<CartCubit>(context).totalNum(
+                          BlocProvider.of<PaidCartCubit>(context).truecoupon))
+                      .toStringAsFixed(3)),
+              const Detailspaid(title: "Delivery fees ", price: "1.05"),
+              const TotalPrice(),
+              const CheckOutButton()
             ],
           )),
     );
   }
 }
-

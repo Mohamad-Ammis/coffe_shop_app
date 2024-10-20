@@ -15,7 +15,7 @@ class CustomCartIcon extends StatelessWidget {
         right: kMainPagePadding,
         top: kMainPagePadding + 20,
         child: InkWell(
-          onTap: () => GoRouter.of(context).push(AppRouter.kCartPage),
+          onTap: () => GoRouter.of(context).push(AppRouter.kCartPage)/*  print(userInfo!.getString("payment_token")) */,
           child: const SizedBox(
             height: 40,
             width: 40,

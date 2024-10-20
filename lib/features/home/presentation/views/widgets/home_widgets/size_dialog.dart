@@ -58,6 +58,9 @@ class SizeDialog extends StatelessWidget {
                     onTap: () {
                       CartModel cartModel = CartModel(
                         image: model.image,
+                         description: model.description,
+                         category: model.category,
+                         averageRate: model.averageRate,
                          name: model.name,
                           size:index==0?"S":index==1?"M":"L" ,
                          price: model.price,
@@ -75,7 +78,7 @@ class SizeDialog extends StatelessWidget {
                     child: Container(
                       height: 50,
                       width: 50,
-                      margin:const EdgeInsets.symmetric(horizontal: 10 , vertical: 5),
+                      margin:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.02 , vertical: 5),
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: kPrimaryColor,

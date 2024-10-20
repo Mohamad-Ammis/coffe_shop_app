@@ -43,9 +43,7 @@ class AppRouter {
       GoRoute(
           path: konboarding,
           builder: (context, state) => const OnBoardingView()),
-      GoRoute(
-          path: kCartPage,
-          builder: (context, state) => const Cart()),    
+      GoRoute(path: kCartPage, builder: (context, state) => const Cart()),
       GoRoute(
         path: kLoginView,
         builder: (context, state) => MultiBlocProvider(

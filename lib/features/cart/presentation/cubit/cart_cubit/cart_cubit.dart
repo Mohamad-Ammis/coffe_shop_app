@@ -7,12 +7,26 @@ part 'cart_state.dart';
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
 
-  num totalNum() {
+  num totalNum(bool truecoupon) {
     num sum = 0;
     for (int i = 0; i < cartitem.length; i++) {
       sum += ((cartitem[i].price) * (cartitem[i].count));
     }
-    return sum;
+    if(truecoupon){
+      return ((90*(sum))/100);
+    }else{
+     return sum;
+    }
+  }
+
+
+
+  num totalcount() {
+    num sum = 0;
+    for (int i = 0; i < cartitem.length; i++) {
+      sum = sum + cartitem[i].count;
+    }
+     return sum;
   }
 
   void addlist(CartModel cartmodel) {
@@ -63,9 +77,15 @@ class CartCubit extends Cubit<CartState> {
         cartitem[i].count -= 1;
       }
       if (cartitem[i].count == 0) {
-        cartitem.removeAt(i);
+        if (cartitem.length==1) {
+          cartitem.removeAt(i);
+          emit(CartDelete());
+        } else {
+          cartitem.removeAt(i);
+        }
+      }else{
+        emit(Cartcount(count: cartitem[i].count));
       }
-      emit(Cartcount(count: cartitem[i].count));
     }
   }
 }

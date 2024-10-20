@@ -38,7 +38,16 @@ class CartBody extends StatelessWidget {
                 return Text(state.errormessage);
               }else if(state is CartLoading){
                 return const CircularProgressIndicator();
-              }else{
+              }else if(state is CartDelete){
+                return Center(
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height*0.7,
+                      width: MediaQuery.of(context).size.width*0.6,
+                      child: Image.asset("assets/images/empty.png" , fit: BoxFit.contain,),
+                    ),
+                  );
+              }
+              else{
                 return cartitem.isNotEmpty? ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Detailspaid extends StatelessWidget {
   final String title;
-  final num price;
+  final String price;
   const Detailspaid({
     super.key,
     required this.title,
