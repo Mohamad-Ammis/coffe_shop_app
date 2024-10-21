@@ -47,7 +47,7 @@ class _SignUpBodyState extends State<SignUpBody> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const CustomText(
-              title: "Creat an account",
+              title: "Create an account",
               size: 25,
               alignment: Alignment.center,
               top: 10,

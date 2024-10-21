@@ -11,8 +11,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<String> images = [
       Assets.assetsImagesHome,
-      Assets.assetsImagesHeart,
       Assets.assetsImagesBag,
+      Assets.assetsImagesHeart,
       Assets.assetsImagesNotification,
     ];
 

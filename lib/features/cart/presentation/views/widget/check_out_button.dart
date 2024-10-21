@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/features/cart/data/model/item_cart_model.dart';
 import 'package:coffe_shop/features/cart/presentation/cubit/cart_cubit/cart_cubit.dart';
@@ -24,7 +26,7 @@ class CheckOutButton extends StatelessWidget {
         listener: (BuildContext context, StripeCartState state) {
           if (state is StripeCartSuccess) {
             //if success => create order
-            print("Your payment completed successfully");
+            log("Your payment completed successfully");
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text("Your payment completed successfully")));
             FirebaseService firebaseService = FirebaseService();
@@ -45,7 +47,7 @@ class CheckOutButton extends StatelessWidget {
                     BlocProvider.of<CartCubit>(context).deletlist();
                     GoRouter.of(context).pop();
           } else if (state is StripeCartFailure) {
-            print(state.errMessage);
+            log(state.errMessage);
             GoRouter.of(context).pop();
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text(state.errMessage)));

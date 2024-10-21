@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
         onPressed: onPressed,
         style: ButtonStyle(
           shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-              side: const BorderSide(width: 0.3, color: Colors.black54),
+              // side: const BorderSide(width: 0.3, color: Colors.black54),
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(redtl ?? 0),
                   topRight: Radius.circular(redtr ?? 0),

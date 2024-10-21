@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_shop/core/errors/failure.dart';
 import 'package:coffe_shop/features/cart/data/repo/cart_repo.dart';
@@ -19,14 +21,14 @@ class CartRepoImp implements CartRepo{
     List<dynamic> coupons = userDoc.get('coupons'); // جلب قائمة الكوبونات
 
     if (coupons.contains(coupon)) {
-      print("Coupon is valid for this user");
+      log("Coupon is valid for this user");
        return right(true);
     } else {
-      print("Coupon not found for this user");
+      log("Coupon not found for this user");
       return left(ServerFaliure(errorMessage: "Coupon not Valid"));
     }
   } else {
-    print("User does not exist");
+    log("User does not exist");
     return left(ServerFaliure(errorMessage: "Coupon not Valid"));
   }
     }catch (e) {
@@ -36,7 +38,7 @@ class CartRepoImp implements CartRepo{
 
   @override
   Future<Either<Failure, bool>> paidCart() {
-    // TODO: implement paidCart
+    // 
     throw UnimplementedError();
   }
 }

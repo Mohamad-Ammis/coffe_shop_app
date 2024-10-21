@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coffe_shop/features/cart/data/repo/cart_repo.dart';
@@ -25,18 +27,19 @@ class PaidCartCubit extends Cubit<PaidCartState> {
     try {
     //  emit(FavoriteLoading());
       User? currentUser = _auth.currentUser;
-      if (currentUser == null) print("nouser");
-      else{
+      if (currentUser == null) {
+        log("nouser");
+      } else{
          CollectionReference users = _firestore.collection('user');
       await users
       .doc(currentUser.uid)
       .set({
         'coupons': FieldValue.arrayUnion(["Areej516"])
       });
-      print("saved okkkk");
+      log("saved okkkk");
       }
     }catch(error){
-      print(error);
+      log(error.toString());
     }}
 
     void test2()async{
@@ -47,14 +50,14 @@ class PaidCartCubit extends Cubit<PaidCartState> {
     List<dynamic> coupons = userDoc.get('coupons'); // جلب قائمة الكوبونات
 
     if (coupons.contains("Areej55")) {
-      print("Coupon is valid for this user");
+      log("Coupon is valid for this user");
       // return true; // الكوبون موجود
     } else {
-      print("Coupon not found for this user");
+      log("Coupon not found for this user");
       // return false; // الكوبون غير موجود
     }
   } else {
-    print("User does not exist");
+    log("User does not exist");
     // return false; // المستخدم غير موجود
   }
     }

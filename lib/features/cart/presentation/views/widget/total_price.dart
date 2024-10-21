@@ -22,7 +22,7 @@ class TotalPrice extends StatelessWidget {
                 children: [
                   const Text(
                     "Total",
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontFamily: kFontFamily,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

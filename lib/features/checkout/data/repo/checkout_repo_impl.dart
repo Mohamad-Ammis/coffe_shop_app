@@ -1,3 +1,4 @@
+
 import 'package:coffe_shop/core/errors/failure.dart';
 import 'package:coffe_shop/core/utils/stripe_service.dart';
 import 'package:coffe_shop/features/checkout/data/models/payment_intent_input_model.dart';
@@ -24,6 +25,7 @@ class CheckoutRepoImpl implements CheckoutRepo {
         // Handle canceled payment
         errMessage = 'Payment canceled by the user';
       } else {
+        
         // Handle other errors
         errMessage = e.toString();
       }

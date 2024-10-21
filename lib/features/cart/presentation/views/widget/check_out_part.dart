@@ -17,22 +17,23 @@ class CheckOutPart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: const EdgeInsets.all(0),
       color: Colors.white,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(40), topRight: Radius.circular(40))),
-      elevation: 10,
+      // elevation: 10,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: Colors.black38, width: 0.3),
-            borderRadius: const BorderRadius.only(
+            borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(40), topRight: Radius.circular(40))),
-        height: 100,
+        // height: 100,
         child: Row(
           children: [
             Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -45,7 +46,7 @@ class CheckOutPart extends StatelessWidget {
                   builder: (context, state) {
                     return Text(
                       r'$'
-                      '${(BlocProvider.of<CartCubit>(context).totalNum(BlocProvider.of<PaidCartCubit>(context).truecoupon)+1.05).toStringAsFixed(3)}',
+                      '${(BlocProvider.of<CartCubit>(context).totalNum(BlocProvider.of<PaidCartCubit>(context).truecoupon) + 1.05).toStringAsFixed(3)}',
                       style:
                           Styles.style18SemiBold.copyWith(color: kPrimaryColor),
                     );
@@ -63,21 +64,23 @@ class CheckOutPart extends StatelessWidget {
                           'Oops', "List is empty", ContentType.failure));
                   } else {
                     showModalBottomSheet(
-                        context: context,
-                        backgroundColor: kBackgroundColor,
-                        isScrollControlled: true,
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(30),
-                                topRight: Radius.circular(30))),
-                        builder: (context) => const PaidBottomSheet()).then((data){
-                           BlocProvider.of<PaidCartCubit>(context).dispose();
-                        });
+                            context: context,
+                            backgroundColor: kBackgroundColor,
+                            isScrollControlled: true,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(30),
+                                    topRight: Radius.circular(30))),
+                            builder: (context) => const PaidBottomSheet())
+                        .then((data) {
+                      // ignore: use_build_context_synchronously
+                      BlocProvider.of<PaidCartCubit>(context).dispose();
+                    });
                   }
                 },
                 color: kPrimaryColor,
                 height: 55,
-                width: MediaQuery.of(context).size.width*0.45,
+                width: MediaQuery.of(context).size.width * 0.45,
                 redbl: 20,
                 redbr: 20,
                 redtl: 20,
