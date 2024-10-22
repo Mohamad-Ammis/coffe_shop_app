@@ -26,10 +26,6 @@ class Assets {
   /// assets/images/delivery.png
   static const String assetsImagesDelivery = "assets/images/delivery.png";
 
-  /// Assets for assetsImagesEmpty
-  /// assets/images/empty.png
-  static const String assetsImagesEmpty = "assets/images/empty.png";
-
   /// Assets for assetsImagesFace
   /// assets/images/face.png
   static const String assetsImagesFace = "assets/images/face.png";

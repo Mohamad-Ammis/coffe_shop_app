@@ -58,14 +58,15 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void navigateToHome() {
-    Future.delayed(const Duration(seconds: 3), () { 
-      if(userInfo!.getBool("user")==null || userInfo!.getBool("user")==false){
+    Future.delayed(const Duration(seconds: 3), () {
+      if (userInfo!.getBool("user") == null ||
+          userInfo!.getBool("user") == false) {
         GoRouter.of(context).pushReplacement(AppRouter.konboarding);
-      }else{
+      } else {
         GoRouter.of(context).pushReplacement(AppRouter.kHomeViewPath);
       }
-     // GoRouter.of(context).push(AppRouter.kLoginView);
-     // GoRouter.of(context).push(AppRouter.kHomeViewPath);
+      // GoRouter.of(context).push(AppRouter.kLoginView);
+      // GoRouter.of(context).push(AppRouter.kHomeViewPath);
       // GoRouter.of(context).push(AppRouter.kHomeViewPath);
     });
   }

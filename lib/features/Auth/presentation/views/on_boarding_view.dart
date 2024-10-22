@@ -1,6 +1,7 @@
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/app_routes.dart';
 import 'package:coffe_shop/core/widgets/custom_button.dart';
+import 'package:coffe_shop/main.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -43,7 +44,7 @@ class OnBoardingView extends StatelessWidget {
                             horizontal:
                                 MediaQuery.of(context).size.width * 0.1),
                         width: MediaQuery.of(context).size.width * 0.8,
-                        child:const Text(
+                        child: const Text(
                           "Fall in Love with Coffee in Blissful Delight",
                           style: TextStyle(
                               fontFamily: kFontFamily,
@@ -70,9 +71,14 @@ class OnBoardingView extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      const SizedBox(height: 20,),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       CustomButton(
-                        onPressed: () => GoRouter.of(context).push(AppRouter.kLoginView),
+                        onPressed: () async {
+                          GoRouter.of(context).push(AppRouter.kLoginView);
+                          await userInfo!.setBool('first_use', true);
+                        },
                         color: const Color(0xffC67C4F),
                         height: MediaQuery.of(context).size.height * 0.07,
                         width: MediaQuery.of(context).size.width * 0.75,
@@ -80,12 +86,15 @@ class OnBoardingView extends StatelessWidget {
                         redbr: 20,
                         redtl: 20,
                         redtr: 20,
-                        child:const Text("Get Started " , style:  TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontFamily: kFontFamily,
-                        ),),
+                        child: const Text(
+                          "Get Started ",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontFamily: kFontFamily,
+                          ),
+                        ),
                       ),
                     ],
                   ),

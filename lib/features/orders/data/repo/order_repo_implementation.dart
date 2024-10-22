@@ -13,7 +13,10 @@ class OrderRepoImplementation implements OrderRepo {
   Future<Either<Failure, List<OrderModel>>> getAllOrders() async {
     try {
       var data = await firebaseService.getAllData(
-          collectionName: kOrdersCollection, sortData: false);
+          collectionName: kOrdersCollection,
+          sortData: true,
+          sortKey: 'created_at',
+          descending: true);
       List<OrderModel> orders = [];
       for (var order in data) {
         orders.add(OrderModel.fromJson(order));

@@ -8,12 +8,15 @@ class FirebaseService {
   Future<List<Map<String, dynamic>>> getAllData(
       {required String collectionName,
       bool sortData = true,
-      String sortKey = 'name'}) async {
+      String sortKey = 'name',
+      bool descending = false}) async {
     List<Map<String, dynamic>> docList = [];
     QuerySnapshot querySnapshot;
     if (sortData) {
-      querySnapshot =
-          await _firestore.collection(collectionName).orderBy(sortKey).get();
+      querySnapshot = await _firestore
+          .collection(collectionName)
+          .orderBy(sortKey, descending: descending)
+          .get();
     } else {
       querySnapshot = await _firestore.collection(collectionName).get();
     }
