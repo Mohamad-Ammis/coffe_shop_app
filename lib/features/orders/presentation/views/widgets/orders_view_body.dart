@@ -11,26 +11,20 @@ class OrdersViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      backgroundColor: Colors.white,
-      onRefresh: () {
-        return BlocProvider.of<GetOrdersCubit>(context).getAllOrders();
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(kMainPagePadding),
-        child: BlocBuilder<GetOrdersCubit, GetOrdersState>(
-          builder: (context, state) {
-            if (state is GetOrdersSuccess) {
-              return OrdersListView(
-                orders: state.orders,
-              );
-            } else if (state is GetOrdersFailure) {
-              return CustomErrorWidget(errMessage: state.errMessage);
-            } else {
-              return const OrdersLoadingListView();
-            }
-          },
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(kMainPagePadding),
+      child: BlocBuilder<GetOrdersCubit, GetOrdersState>(
+        builder: (context, state) {
+          if (state is GetOrdersSuccess) {
+            return OrdersListView(
+              orders: state.orders,
+            );
+          } else if (state is GetOrdersFailure) {
+            return CustomErrorWidget(errMessage: state.errMessage);
+          } else {
+            return const OrdersLoadingListView();
+          }
+        },
       ),
     );
   }

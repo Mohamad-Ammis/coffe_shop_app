@@ -9,14 +9,24 @@ class FirebaseService {
       {required String collectionName,
       bool sortData = true,
       String sortKey = 'name',
-      bool descending = false}) async {
+      bool descending = false,
+      String? whereKey,
+      String? whereValue}) async {
     List<Map<String, dynamic>> docList = [];
     QuerySnapshot querySnapshot;
     if (sortData) {
-      querySnapshot = await _firestore
-          .collection(collectionName)
-          .orderBy(sortKey, descending: descending)
-          .get();
+      if (whereKey != null && whereValue != null) {
+        querySnapshot = await _firestore
+            .collection(collectionName)
+            .orderBy(sortKey, descending: descending)
+            .where(whereKey, isEqualTo: whereValue)
+            .get();
+      } else {
+        querySnapshot = await _firestore
+            .collection(collectionName)
+            .orderBy(sortKey, descending: descending)
+            .get();
+      }
     } else {
       querySnapshot = await _firestore.collection(collectionName).get();
     }

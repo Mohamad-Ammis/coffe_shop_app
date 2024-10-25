@@ -3,6 +3,7 @@ import 'package:coffe_shop/core/errors/failure.dart';
 import 'package:coffe_shop/core/utils/firebase_service.dart';
 import 'package:coffe_shop/features/orders/data/models/order_model.dart';
 import 'package:coffe_shop/features/orders/data/repo/order_repo.dart';
+import 'package:coffe_shop/main.dart';
 import 'package:dartz/dartz.dart';
 
 class OrderRepoImplementation implements OrderRepo {
@@ -16,7 +17,9 @@ class OrderRepoImplementation implements OrderRepo {
           collectionName: kOrdersCollection,
           sortData: true,
           sortKey: 'created_at',
-          descending: true);
+          descending: true,
+          whereKey: 'client_id',
+          whereValue: userInfo!.get('payment_token').toString());
       List<OrderModel> orders = [];
       for (var order in data) {
         orders.add(OrderModel.fromJson(order));
