@@ -35,7 +35,7 @@ class _SignUpBodyState extends State<SignUpBody> {
             ..showSnackBar(CustomSnackBar().customSnackBar(
                 'Oops', state.errorMessage, ContentType.failure));
         } else if (state is RegisterSuccess) {
-          GoRouter.of(context).pushReplacement(AppRouter.kHomeViewPath);
+          GoRouter.of(context).go(AppRouter.kHomeViewPath);
         }
       },
       child: Padding(

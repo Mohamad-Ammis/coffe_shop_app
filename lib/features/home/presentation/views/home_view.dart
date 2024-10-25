@@ -12,29 +12,28 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () async {
-        BlocProvider.of<OffersCubit>(context)
-            .getAllOffers(collectionName: kOffersCollection);
-        BlocProvider.of<ProductCubit>(context)
-            .getAllProducts(collectionName: kProductsCollection);
-        BlocProvider.of<CategoryCubit>(context)
-            .getAllCategories(collectionName: kCategoriesCollection);
-      },
-      child: BlocProvider(
-        create: (_) => BottomNavCubit(),
-        child: BlocBuilder<BottomNavCubit, int>(
-          builder: (context, state) {
-            return Scaffold(
-              bottomNavigationBar: const CustomBottomNavigationBar(),
-              backgroundColor: kBackgroundColor,
-              resizeToAvoidBottomInset: false,
-              body: context
-                  .read<BottomNavCubit>()
-                  .screens[state], // Change screen based on Cubit state
-            );
-          },
-        ),
+    // return RefreshIndicator(
+    //   onRefresh: () async {
+    //     BlocProvider.of<OffersCubit>(context)
+    //         .getAllOffers(collectionName: kOffersCollection);
+    //     BlocProvider.of<ProductCubit>(context)
+    //         .getAllProducts(collectionName: kProductsCollection);
+    //     BlocProvider.of<CategoryCubit>(context)
+    //         .getAllCategories(collectionName: kCategoriesCollection);
+    //   },
+    return BlocProvider(
+      create: (_) => BottomNavCubit(),
+      child: BlocBuilder<BottomNavCubit, int>(
+        builder: (context, state) {
+          return Scaffold(
+            bottomNavigationBar: const CustomBottomNavigationBar(),
+            backgroundColor: kBackgroundColor,
+            resizeToAvoidBottomInset: false,
+            body: context
+                .read<BottomNavCubit>()
+                .screens[state], // Change screen based on Cubit state
+          );
+        },
       ),
     );
   }

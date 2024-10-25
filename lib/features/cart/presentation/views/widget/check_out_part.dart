@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:coffe_shop/constans.dart';
 import 'package:coffe_shop/core/utils/app_style.dart';
@@ -44,12 +46,24 @@ class CheckOutPart extends StatelessWidget {
                 6.verticalSizedBox,
                 BlocBuilder<CartCubit, CartState>(
                   builder: (context, state) {
-                    return Text(
-                      r'$'
-                      '${(BlocProvider.of<CartCubit>(context).totalNum(BlocProvider.of<PaidCartCubit>(context).truecoupon) + 1.05).toStringAsFixed(3)}',
-                      style:
-                          Styles.style18SemiBold.copyWith(color: kPrimaryColor),
-                    );
+                    log(state.toString());
+                    if (state is CartSuccess ||
+                        state is CartInitial ||
+                        state is CartDelete) {
+                      return Text(
+                        r'$'
+                        '${(BlocProvider.of<CartCubit>(context).totalNum(BlocProvider.of<PaidCartCubit>(context).truecoupon) + 0.0).toStringAsFixed(2)}',
+                        style: Styles.style18SemiBold
+                            .copyWith(color: kPrimaryColor),
+                      );
+                    } else {
+                      return Text(
+                        r'$'
+                        '${(BlocProvider.of<CartCubit>(context).totalNum(BlocProvider.of<PaidCartCubit>(context).truecoupon) + 1.05).toStringAsFixed(2)}',
+                        style: Styles.style18SemiBold
+                            .copyWith(color: kPrimaryColor),
+                      );
+                    }
                   },
                 )
               ],

@@ -25,11 +25,9 @@ class OrderCardInfoSection extends StatelessWidget {
         ),
         OrderCardInfoItem(
           title: 'Total Price',
-          subTitle: '${order.price}\$',
+          subTitle: '${order.price.toStringAsFixed(2)}\$',
         ),
       ],
     );
   }
-
-
 }

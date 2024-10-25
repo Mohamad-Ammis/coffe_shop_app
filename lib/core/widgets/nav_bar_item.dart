@@ -54,6 +54,8 @@ class NavBarItemState extends State<NavBarItem>
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
+      // color: Colors.red,
+      padding: EdgeInsets.symmetric(horizontal: 8),
       duration: const Duration(milliseconds: 500),
       child: Column(
         mainAxisSize: MainAxisSize.min,

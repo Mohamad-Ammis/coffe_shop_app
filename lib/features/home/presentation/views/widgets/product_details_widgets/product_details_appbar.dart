@@ -18,7 +18,8 @@ class ProductDetailsAppbar extends StatelessWidget
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: AppBar(
         elevation: 0,
-        backgroundColor: kBackgroundColor,
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.transparent,
         title: const Text(
           'Details',
           style: Styles.style16SemiBold,
