@@ -1,6 +1,12 @@
+import 'dart:developer';
+
 import 'package:coffe_shop/core/errors/failure.dart';
 import 'package:coffe_shop/core/utils/firebase_service.dart';
+import 'package:coffe_shop/core/utils/service_locator.dart';
+import 'package:coffe_shop/core/utils/stripe_service.dart';
 import 'package:coffe_shop/features/Auth/data/repo/auth_repo.dart';
+import 'package:coffe_shop/features/checkout/data/models/customer_input_model.dart';
+import 'package:coffe_shop/main.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -54,7 +60,6 @@ class AuthRepoImp implements AuthRepo {
       // Obtain the auth details from the request
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
-
       // Create a new credential
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
@@ -62,8 +67,15 @@ class AuthRepoImp implements AuthRepo {
       );
 
       // Once signed in, return the UserCredential
+
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
+      log(userCredential.user!.email.toString());
+      if (userInfo!.getString('payment_token') != null) {
+        getIt.get<StripeService>().createCustomer(
+            customerModel: CustomerInputModel(
+                email: userCredential.user!.email.toString()));
+      }
       return right(userCredential);
     } on FirebaseAuthException catch (e) {
       return left(firebasecatch(e));
@@ -112,6 +124,4 @@ class AuthRepoImp implements AuthRepo {
       return ServerFaliure(errorMessage: "${e.code}, try again");
     }
   }
-
-
 }

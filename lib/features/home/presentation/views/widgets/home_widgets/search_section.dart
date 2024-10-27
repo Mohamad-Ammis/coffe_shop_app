@@ -30,7 +30,7 @@ class SearchSection extends StatelessWidget {
             ),
           ),
           Text(
-            'Mohamad Ammis',
+            'in Caffeine',
             style: Styles.style18SemiBold.copyWith(
               color: Colors.white,
             ),
